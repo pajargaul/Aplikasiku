@@ -40,7 +40,7 @@ Route::prefix('admin')->group(function () {
     route::get('/tambahakunnelayan', [AdminController::class, 'admintambahdatanelayan'])->name('admin.tambahdatanelayan');
     route::post('/tambahakunnelayan', [AdminController::class, 'storetambahnelayan'])->name('admin.storetambahnelayan');
     route::get('/lihatdatanelayan', [AdminController::class, 'viewdatanelayan'])->name('admin.lihatdatanelayan');
-    route::get('/lihatdatanelayan', [AdminController::class, 'viewdatanelayan'])->name('admin.lihatdatanelayan');
+
 });
 
 Route::get('/', function () {
@@ -71,4 +71,6 @@ Route::prefix('nelayan')->group(function () {
     Route::post('/forgot-password', [NelayanForgotPasswordController::class, 'sendResetLinkEmail'])->name('nelayan.password.email');
     Route::get('/forgot-password/{token}', [NelayanForgotPasswordController::class, 'reseturl'])->name('nelayan.password.reset');
     Route::post('/forgot-password/{token}/{email}', [NelayanForgotPasswordController::class, 'processResetPassword'])->name('nelayan.password.update');
+    route::get('/sewakan-alat', [NelayanController::class, 'sewakanalat'])->name('nelayan.sewakan-alat');
+    route::post('/sewaalat', [NelayanController::class, 'storesewaalat'])->name('nealayan.storesewaalat');
 });

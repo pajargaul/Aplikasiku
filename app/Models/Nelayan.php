@@ -52,3 +52,5 @@ class Nelayan extends Authenticatable implements CanResetPasswordContract
      */  
 }
 
+
+

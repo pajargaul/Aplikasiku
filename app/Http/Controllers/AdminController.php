@@ -67,7 +67,8 @@ class AdminController extends Controller
     }
 
     public function Dashboard(){
-        return view('admin.index');
+        $dataNelayan = Nelayan::all();
+        return view('admin.index', compact('dataNelayan'));
     }
     public function Login(Request $request){
     $check= $request->all();

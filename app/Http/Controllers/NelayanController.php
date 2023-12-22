@@ -24,8 +24,16 @@ class NelayanController extends Controller
         public function Dashboard(){
             return view('nelayan.index');
         }
-        public function NelayanLogout(){
+        public function nelayanLogout(){
             Auth::guard('nelayan')->logout();
             return redirect()->route('nelayan.login_form')->with('error', 'nelayan logout succesfully');
+        }
+
+        public function sewakanalat(){
+            return view('nelayan.sewakanalat');
+        }
+
+        public function storesewaalat(Request $request){
+            
         }
 }

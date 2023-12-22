@@ -31,12 +31,12 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>{{Auth::guard('admin')->user()->name}}</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>{{Auth::guard('nelayan')->user()->nama}}</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{route('admin.setting')}}">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{{route ('admin.logout')}}">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{route ('nelayan.logout')}}">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -54,18 +54,17 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
                                       </svg>
                                 </div>
-                                Manajemen Akun Nelayan
+                                Produk Saya
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{route('admin.tambahdatanelayan')}}">Tambahkan Akun Nelayan</a>
-                                    <a class="nav-link" href="{{route('admin.lihatdatanelayan')}}">Lihat Data Para Nelayan</a>
+                                    <a class="nav-link" href="{{route('nelayan.sewakan-alat')}}">Sewakan Alat</a>
+                                    <a class="nav-link" href="#">Barang yang Saya Sewakan</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -112,123 +111,81 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        {{Auth::guard('admin')->user()->name}}
+                        {{Auth::guard('nelayan')->user()->nama}}
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Sewakan Alat</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Sewakan Alat</li>
                         </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                                  </svg>
+                                Sewakan Alat
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>email</th>
-                                            <th>alamat</th>
-                                            <th>nomer_telepon</th>
-                                            <th>nama_kapal</th>
-                                            <th>jenis_kapal</th>
-                                            <th>jumlah_abk</th>
-                                            <th>foto</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>email</th>
-                                            <th>alamat</th>
-                                            <th>nomer_telepon</th>
-                                            <th>nama_kapal</th>
-                                            <th>jenis_kapal</th>
-                                            <th>jumlah_abk</th>
-                                            <th>foto</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @foreach($dataNelayan as $nelayan)
-                                        <tr>
-                                            <td>{{ $nelayan->nama }}</td>
-                                            <td>{{ $nelayan->email }}</td>
-                                            <td>{{ $nelayan->alamat }}</td>
-                                            <td>{{ $nelayan->nomer_telepon }}</td>
-                                            <td>{{ $nelayan->nama_kapal }}</td>
-                                            <td>{{ $nelayan->jenis_kapal }}</td>
-                                            <td>{{ $nelayan->jumlah_abk }}</td>
-                                            <td><img src="{{ asset('img/' . $nelayan->foto) }}" alt="Foto Kapal"></td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <form method="POST" action="#">
+                                    @csrf
+                                    <div class="mb-3 row">
+                                        <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="nama_barang">
+                                        </div>
+                                      </div>
+                                    <div class="mb-3 row">
+                                        <label for="harga" class="col-sm-2 col-form-label">Harga :</label>
+                                        <div class="col-sm-10">
+                                            <input type="number" class="form-control" id="harga" name="harga" step="0.01" min="0.01"  placeholder="Masukkan harga" required>
+                                        </div>
+                                      </div>
+                                      <div class="mb-3 row">
+                                        <label for="kondisi" class="col-sm-2 col-form-label">Kondisi</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="kondisi">
+                                        </div>
+                                      </div>
+
+                                      <div class="mb-3 row">
+                                        <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Barang</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="jumlah">
+                                        </div>
+                                      </div>
+                                      <div class="mb-3 row">
+                                        <label for="formFile" class="col-sm-2 col-form-label">Upload Foto Barang</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+                                      </div>
+
+                                  <div class="mb-3 row">
+                                    <button style="width: 20%; margin-left:auto; margin-right:auto; margin-top:3%" type="submit" class="btn btn-danger">Sewakan</button>
+                                  </div>
+                                  @if(session('st'))
+                                  <div class="alert alert-danger">
+                                      {{ session('st') }}
+                                  </div>
+                              @endif
+
+                                  @if($errors->any())
+                                  <div class="alert alert-danger">
+                                      <ul>
+                                          @foreach($errors->all() as $error)
+                                              <li>{{ $error }}</li>
+                                          @endforeach
+                                      </ul>
+                                  </div>
+                              @endif
+                                </form>
                             </div>
-                        </div>
+                    </div>
+                        
                     </div>
                 </main>
                 <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
