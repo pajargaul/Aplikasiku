@@ -1,0 +1,349 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rancho&display=swap');
+.rectangle {
+    width: 96%;
+    height: 120px;
+    background-color: #097ABA;
+    border: 2px solid #097ABA;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.rectangle img {
+    position: absolute;
+    margin-left: 40px;
+    width: auto;
+    height: 90px;
+}
+.user-actions {
+    display: inline-flex;
+    margin-left: 900px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+.user-actions a:hover {
+    color: rgb(58, 55, 55);
+}
+
+.user-actions a {
+    margin-right: 47px;
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.user-actions button {
+    width: 170px;
+    height: 60px;
+    border-radius: 20px;
+    background-color: black;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: white;
+    transition: 0.3s ease, transform 0.2s ease;
+}
+
+.user-actions button:hover {
+    background-color: #222;
+    transform: scale(1.1);
+}
+
+.user-actions button:active {
+    background-color: #111;
+    transform: scale(0.9);
+}
+
+
+.navbar-expand-lg{
+    margin-left: -800px;
+}
+.navbar-collapse{
+    font-family: poppins;
+    font-size: 20;
+    font-weight: bold;
+}
+/* Ganti warna font untuk kelas .nav-link */
+.navbar-nav .nav-link {
+    color: white; /* Ganti dengan warna yang diinginkan, misalnya: #ff0000; */
+}
+
+/* Ganti warna font untuk kelas .nav-link pada hover */
+.navbar-nav .nav-link:hover {
+    color: rgb(58, 55, 55); /* Ganti dengan warna hover yang diinginkan, misalnya: #00ff00; */
+}
+/* Tambahkan garis bawah pada link yang aktif (class 'active') */
+/* Gaya untuk link yang aktif */
+.navbar-nav .nav-item.active .nav-link::after {
+    content: ""; /* Menambahkan elemen content untuk ::after */
+    display: block; /* Menjadikan elemen sebagai blok */
+}
+.navbar-nav .nav-item {
+    margin-right: 20px; /* Sesuaikan dengan jarak yang diinginkan antar elemen <li> */
+}
+
+.kotak{
+    position: absolute;
+    width: 650px;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 850px;
+    margin-top: 150px;
+    margin-left: 600px;
+}
+
+.kotak h1{
+    margin-top: 23px;
+    margin-left: 20px;
+    font-family: poppins, sans-serif;
+    font-weight: bold;
+    font-size: 60px;
+    color: black;
+}
+
+ .kotak p{
+    font-family: poppins, sans-serif;
+    font-weight: regular;
+    font-size: 25px;
+    color: #B8B8D2;
+    margin-top: 21px;
+    margin-left: 20px;
+}
+
+.kotak form{
+    margin-top: 5px;
+}
+
+/* Tambahkan gaya kustom di sini */
+.custom-form-group {
+    display: flex;
+    flex-direction: column;
+    font-family: poppins, sans-serif;
+    font-weight: regular;
+    color: black;
+    font-size: 20px;
+}
+
+.custom-form-group label {
+    margin-bottom: 5px; 
+    margin-left: 30px;
+}
+
+.custom-form-group input {
+    padding: 8px;
+    border-radius: 20px;
+    width: 90%;
+    margin-left: 30px;
+}
+
+.cmt-4 {
+    margin-top: 4px; 
+}
+
+
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px; /* Atur margin sesuai kebutuhan Anda */
+}
+
+.block {
+    margin-right: 10px; /* Atur margin sesuai kebutuhan Anda */
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+
+.custom-checkbox {
+    border-radius: 4px;
+    border: 1px solid #d2d6dc;
+    padding: 6px;
+}
+
+/* Gaya hover pada checkbox */
+.custom-checkbox:hover {
+    border-color: #718096;
+}
+
+/* Gaya tercentang pada checkbox */
+.custom-checkbox:checked {
+    background-color: #6366f1;
+    border-color: #6366f1;
+}
+
+.ms-3{
+    width: 93%;
+    height: 56px;
+    background-color: #097ABA;
+    border: none !important;
+    border-radius: 20px;
+    font-family: poppins, sans-serif;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 100px;
+}
+.ms-4 {
+    margin-top: 50px;
+    width: 91.5%;
+    height: 56px;
+    background-color: #097ABA;
+    border: none !important;
+    border-radius: 20px;
+    font-family: poppins, sans-serif;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ms-3:hover {
+    background-color: #097ABA;
+    transform: scale(1.1);
+}
+.ms-4:hover {
+    background-color: #097ABA;
+    transform: scale(1.1);
+}
+
+.ms-3:active {
+    background-color: #097ABA;
+    transform: scale(0.9);
+}
+.ms-4:active {
+    background-color: #097ABA;
+    transform: scale(0.9);
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    position: absolute;
+    margin-top: 1050px;
+    background-color: #097ABA;
+    width: 100%;
+    height: 500px;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+}
+
+.justify-end{
+    margin-left: 30px;
+}
+
+ .kotakfooter img {
+    height: 500px;
+    display: flex;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 0;
+    opacity: 70%;
+}
+
+.contentfooter {
+    position:absolute;
+}
+
+.contentfooter p{
+    font-size: 30px;
+    font-family: popiins, sans-serif;
+    font-weight: regular;
+    color: white;
+    line-height: 40px;
+    word-spacing: 0.3px;
+    margin-top: 60px;
+    margin-left: 90px;
+}
+
+.buton1{
+    position: absolute;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.buton1 a{
+    color: white;
+    margin-right: 50px;
+}
+
+.buton1 button{
+    border-radius: 0;
+    background: linear-gradient(#2176D1, #48CCC4);
+    width: 200px;
+    height: 50px;
+    border: none;
+    transition: 0.1s ease, transform 0.1s ease;
+    margin-top: 111px;
+    margin-left: 700px;
+}
+.buton1 button:hover{
+    background-color: linear-gradient(#2176D1, #48CCC4);
+    transform: scale(1.1);
+    color: white;
+    font-family: poppins,sans-serif;
+}
+.user-actions button:active {
+    background-color: linear-gradient(#2176D1, #48CCC4);
+    transform: scale(0.9);
+}
+.ul1{
+   position: absolute;
+   color: #B1B1B1;
+   margin-top: 313px;
+   margin-left: 60px;
+}
+
+.menufooter a {
+    color: #B1B1B1;
+    font-family: poppins, sans-serif;
+    font-weight: regular;
+    font-size: 12px;
+}
+
+.menufooter li {
+    margin-bottom: 10px; 
+    list-style-type: none;
+}
+
+.ul2{
+    position: absolute;
+    color: #B1B1B1;
+    margin-top: 313px;
+    margin-left: 260px;
+ }
+
+ .ul3{
+    position: absolute;
+    color: #B1B1B1;
+    margin-top: 313px;
+    margin-left: 460px;
+ }
+ .ul4{
+    position: absolute;
+    color: #B1B1B1;
+    margin-top: 313px;
+    margin-left: 660px;
+ }
+
+ .ul5{
+    position: absolute;
+    color: #B1B1B1;
+    margin-top: 379px;
+    margin-left: 660px;
+ }
+
+ .ul5 .menufooter li {
+    display: inline;
+    margin-right: 15px;
+} 
