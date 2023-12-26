@@ -7,6 +7,44 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
+        <style>
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 20px;
+            }
+        
+            .asolole {
+                width: calc(25% - 20px); /* 25% untuk empat kolom, dan dikurangi margin antar kartu */
+                margin-bottom: 20px; /* Jarak antar kartu */
+                box-sizing: border-box;
+            }
+        
+            .card img {
+                height: 200px;
+                object-fit: cover;
+                width: 100%;
+            }
+        
+            @media (max-width: 1200px) {
+                .asolole {
+                    width: calc(33.33% - 20px); /* Tiga kolom pada layar berukuran lebih kecil */
+                }
+            }
+        
+            @media (max-width: 992px) {
+                .asolole {
+                    width: calc(50% - 20px); /* Dua kolom pada layar berukuran lebih kecil */
+                }
+            }
+        
+            @media (max-width: 768px) {
+                .asolole {
+                    width: 100%; /* Satu kolom pada layar sangat kecil */
+                }
+            }
+        </style>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
@@ -16,7 +54,7 @@
     <body class="sb-nav-fixed" style="{{asset('img/bg.svg')}}">
         <nav class="sb-topnav navbar navbar-expand navbar-light " style="background-color: #097ABA; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);  ">
             <!-- Navbar Brand-->
-            <a href="{{route('nelayan.dashboard')}}">">
+            <a href="{{route('nelayan.login_form')}}">
             <img src="{{asset('img/logo (1).svg')}}" alt="logo" style="width: 45%; margin-left:10%">
         </a>
             <!-- Sidebar Toggle-->
@@ -47,7 +85,7 @@
                     <div class="sb-sidenav-menu" style="background-color: #097ABA">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="{{route('nelayan.dashboard')}}">
+                            <a class="nav-link" href="{{route('nelayan.login_form')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -118,74 +156,24 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Sewakan Alat</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Sewakan Alat</li>
                         </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                            <div class="container card-container">
+                                @foreach($barangSewa as $barang)
+                                    <div class="card asolole">
+                                        <img src="{{ asset('storage/fotobarang/' . $barang->foto_barang) }}" class="card-img-top" alt="{{ $barang->nama_barang }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $barang->nama_barang }}</h5>
+                                            <p class="card-text">Rp {{ number_format($barang->harga, 0, ',', '.') }},-</p>
+                                            <a href="#" class="btn btn-warning">Detail</a>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        </div>
+                    </div> 
                     </div>
                 </main>
                 <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
@@ -244,6 +232,5 @@
         <script src="{{ asset('js/chart-bar-demo.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
-        
     </body>
 </html>

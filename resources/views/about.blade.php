@@ -60,8 +60,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
-                <a href="{{route('index')}}" class="nav-item nav-link active">Dashboard</a>
-                <a href="{{route('about')}}" class="nav-item nav-link">About</a>
+                <a href="{{route('index')}}" class="nav-item nav-link">Dashboard</a>
+                <a href="{{route('about')}}" class="nav-item nav-link active">About</a>
                 <a href="{{route('produk')}}" class="nav-item nav-link">Produk</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
@@ -83,75 +83,31 @@
     </nav>
     <!-- Navbar End -->
 
-
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
-        <div class="owl-carousel header-carousel position-relative">
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/pantai-muncar-banyuwangi.jpg" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Selamat Datang di FishApp</h5>
-                                <h1 class="display-3 text-white animated slideInDown">Teman Terbaik para Nelayan!</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">FishApp adalah solusi revolusioner untuk nelayan berbasis data, yang membantu Anda
-                                  meningkatkan hasil tangkapan dan memaksimalkan waktu di laut. Bagi nelayan
-                                  dengan perahu sedang-kecil yang tidak memiliki alat pendeteksi ikan
-                                  FishApp adalah jawaban atas kebutuhan Anda.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">About</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/rete-a-circuizione_740.jpg" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Selamat Datang di FishApp</h5>
-                                <h1 class="display-3 text-white animated slideInDown">Menyediakan Informasi Mengenai Penyewaan Kapal dan Alat Penangkapan Ikan</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Memantau Cuaca dan Suhu Air Real-Time: Kami menyediakan informasi
-                                  cuaca dan suhu air yang akurat dan up-to-date, sehingga Anda bisa merencanakan
-                                  penangkapan ikan Anda dengan lebih baik.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="owl-carousel-item position-relative">
-              <img class="img-fluid" src="img/kenapa-ikan-marlin-jadi-ikon-pangandaran-simak-penjelasannya-iw5zFU2TCB.jpeg" alt="">
-              <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-                  <div class="container">
-                      <div class="row justify-content-start">
-                          <div class="col-sm-10 col-lg-8">
-                              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Selamat Datang di FishApp</h5>
-                              <h1 class="display-3 text-white animated slideInDown">Maksimalkan Hasil Tangkapan Ikan di Laut</h1>
-                              <p class="fs-5 text-white mb-4 pb-2">FishApp membantu Anda meningkatkan efisiensi penangkapan ikan Anda,
-                                sehingga Anda bisa membawa pulang hasil yang lebih besar..</p>
-                              <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
-                              <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
         </div>
     </div>
-    <!-- Carousel End -->
-
-
+    <!-- Header End -->
+    
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item text-center pt-3" style="border-radius:20px">
+                    <div class="service-item text-center pt-3">
                         <div class="p-4">
                             <img src="{{asset('img/lokasi.png')}}" alt="">
                             <h5 class="mb-3">Lokasi Ikan</h5>
@@ -159,7 +115,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item text-center pt-3" style="border-radius:20px">
+                    <div class="service-item text-center pt-3">
                         <div class="p-4">
                           <img src="{{asset('img/swaa alat.png')}}" alt="">
                             <h5 class="mb-3">Sewa Alat</h5>
@@ -167,17 +123,17 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item text-center pt-3" style="border-radius:20px">
+                    <div class="service-item text-center pt-3">
                         <div class="p-4">
-                          <img src="{{asset('img/iwak_wader-removebg-preview 1.png')}}" alt="" style="width: 99%">
+                          <img src="{{asset('img/iwak_wader-removebg-preview 1.png')}}" alt="" style="width: 93%">
                             <h5 class="mb-3">Pasar Ikan</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item text-center pt-3" style="border-radius:20px">
+                    <div class="service-item text-center pt-3">
                         <div class="p-4">
-                          <img src="{{asset('img/🦆 icon _history_.png')}}" alt="" style="width: 99%">
+                          <img src="{{asset('img/🦆 icon _history_.png')}}" alt="">
                             <h5 class="mb-3">History</h5>
                         </div>
                     </div>
@@ -225,60 +181,6 @@
         </div>
     </div>
     <!-- About End -->
-
-
-    <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Kategori</h6>
-                <h1 class="mb-5">Kategori Produk</h1>
-            </div>
-            <div class="row g-3">
-                <div class="col-lg-7 col-md-6">
-                    <div class="row g-3">
-                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="img/kkp-kembali-tangkap-kapal-nelayan-asing-berbendera-malaysia-kQIOFAL2zs.jpg" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Kapal Penangkapan</h5>
-                                    <small class="text-primary">Banyak Kapal Tersedia</small>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="img/C5bwsTjOsv.jpg" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Alat Tangkap Modern</h5>
-                                    <small class="text-primary">Jenis Alat Tersedia</small>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="img/Peralatan-Pancing.jpg" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Perlengkapan Penangkapan</h5>
-                                    <small class="text-primary">Berbagai Pilihan</small>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-                    <a class="position-relative d-block h-100 overflow-hidden" href="">
-                        <img class="img-fluid position-absolute w-100 h-100" src="img/Nelayan-harus-mendapat-perlindungan-dari-negara.jpg" alt="" style="object-fit: cover;">
-                        <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                            <h5 class="m-0">Peralatan Nelayan</h5>
-                            <small class="text-primary">Lengkap dan Berkualitas</small>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Categories Start -->
 
     <!-- Team Start -->
     <div class="container-xxl py-5">
@@ -364,53 +266,6 @@
         </div>
     </div>
     <!-- Team End -->
-
-
-    <!-- Testimonial Start -->
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="text-center">
-                <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
-                <h1 class="mb-5">Para Pengguna FishApp</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel position-relative">
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial End -->
-        
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">

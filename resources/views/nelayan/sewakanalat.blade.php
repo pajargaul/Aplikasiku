@@ -16,7 +16,7 @@
     <body class="sb-nav-fixed" style="{{asset('img/bg.svg')}}">
         <nav class="sb-topnav navbar navbar-expand navbar-light " style="background-color: #097ABA; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);  ">
             <!-- Navbar Brand-->
-            <a href="{{route('admin.dashboard')}}">
+            <a href="{{route('nelayan.login_form')}}">
             <img src="{{asset('img/logo (1).svg')}}" alt="logo" style="width: 45%; margin-left:10%">
         </a>
             <!-- Sidebar Toggle-->
@@ -47,7 +47,7 @@
                     <div class="sb-sidenav-menu" style="background-color: #097ABA">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="/admin/dashboard">
+                            <a class="nav-link" href="{{route('nelayan.login_form')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -64,7 +64,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{route('nelayan.sewakan-alat')}}">Sewakan Alat</a>
-                                    <a class="nav-link" href="#">Barang yang Saya Sewakan</a>
+                                    <a class="nav-link" href="{{route('nelayan.viewproduk')}}">Barang yang Saya Sewakan</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -130,62 +130,65 @@
                                 Sewakan Alat
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="#">
+                                <form method="POST" action="{{route('nealayan.storesewaalat')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3 row">
                                         <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" name="nama_barang">
                                         </div>
-                                      </div>
+                                    </div>
                                     <div class="mb-3 row">
                                         <label for="harga" class="col-sm-2 col-form-label">Harga :</label>
                                         <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="harga" name="harga" step="0.01" min="0.01"  placeholder="Masukkan harga" required>
+                                            <input type="number" class="form-control" id="harga" name="harga" step="0.01" min="0.01" placeholder="janagan gunakan tanda titik , example:15000" required>
                                         </div>
-                                      </div>
-                                      <div class="mb-3 row">
+                                    </div>
+                                    <div class="mb-3 row">
                                         <label for="kondisi" class="col-sm-2 col-form-label">Kondisi</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="kondisi">
+                                            <select class="form-select" aria-label="Kondisi" name="kondisi" required>
+                                                <option selected disabled>Pilih kondisi</option>
+                                                <option value="Baik">Baik</option>
+                                                <option value="Kurang_baik">Kurang Baik</option>
+                                                <option value="Rusak">Rusak</option>
+                                            </select>
                                         </div>
-                                      </div>
-
-                                      <div class="mb-3 row">
+                                    </div>
+                                    <div class="mb-3 row">
                                         <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Barang</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="jumlah">
+                                            <input type="number" class="form-control" name="jumlah">
                                         </div>
-                                      </div>
-                                      <div class="mb-3 row">
+                                    </div>
+                                    <div class="mb-3 row">
                                         <label for="formFile" class="col-sm-2 col-form-label">Upload Foto Barang</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" type="file" id="formFile">
+                                            <input class="form-control" type="file" id="formFile" name="foto_barang" required>
                                         </div>
-                                      </div>
-
-                                  <div class="mb-3 row">
-                                    <button style="width: 20%; margin-left:auto; margin-right:auto; margin-top:3%" type="submit" class="btn btn-danger">Sewakan</button>
-                                  </div>
-                                  @if(session('st'))
-                                  <div class="alert alert-danger">
-                                      {{ session('st') }}
-                                  </div>
-                              @endif
-
-                                  @if($errors->any())
-                                  <div class="alert alert-danger">
-                                      <ul>
-                                          @foreach($errors->all() as $error)
-                                              <li>{{ $error }}</li>
-                                          @endforeach
-                                      </ul>
-                                  </div>
-                              @endif
+                                    </div>
+                            
+                                    <div class="mb-3 row">
+                                        <button style="width: 20%; margin-left:auto; margin-right:auto; margin-top:3%" type="submit" class="btn btn-danger">Sewakan</button>
+                                    </div>
                                 </form>
-                            </div>
-                    </div>
-                        
+                                @if(session('st'))
+                                    <div class="alert alert-danger">
+                                        {{ session('st') }}
+                                    </div>
+                                @endif
+                            
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>  
+                    </div> 
                     </div>
                 </main>
                 <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">

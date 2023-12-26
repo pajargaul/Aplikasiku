@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Api\APIAuthController;
 use App\Http\Controllers\NelayanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\Adminnewpassword;
 use App\Http\Controllers\Auth\AdminForgotPasswordController;
 use App\Http\Controllers\Auth\NelayanForgotPasswordController;
+use App\Models\Tb_Barangsewa;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,29 +28,40 @@ Route::prefix('admin')->group(function () {
         ->middleware('admin');
     Route::get('/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout')
         ->middleware('admin');
-    Route::get('/static-navigation', function () {
-        return view('admin.layout-static');
-    });
     Route::get('/forgot-password', [AdminForgotPasswordController::class, 'showForgotPasswordForm'])->name('admin.password.request');
     Route::post('/forgot-password', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('admin.password.email');
     Route::get('/forgot-password/{token}', [AdminForgotPasswordController::class, 'reseturl'])->name('admin.password.reset');
     Route::post('/forgot-password/{token}/{email}', [AdminForgotPasswordController::class, 'processResetPassword'])->name('admin.password.update');
-    route::get('/setting', [AdminController::class, 'adminsetting'])->name('admin.setting');
-    route::post('/setting', [AdminController::class, 'updatename'])->name('admin.updatename');
-    route::post('/setting/updatepassword', [AdminController::class, 'newpassword'])->name('admin.newpassword');
 
-    route::get('/tambahakunnelayan', [AdminController::class, 'admintambahdatanelayan'])->name('admin.tambahdatanelayan');
-    route::post('/tambahakunnelayan', [AdminController::class, 'storetambahnelayan'])->name('admin.storetambahnelayan');
-    route::get('/lihatdatanelayan', [AdminController::class, 'viewdatanelayan'])->name('admin.lihatdatanelayan');
+    route::get('/setting', [AdminController::class, 'adminsetting'])->name('admin.setting')
+    ->middleware('admin');
+    route::post('/setting', [AdminController::class, 'updatename'])->name('admin.updatename')
+    ->middleware('admin');
+    route::post('/setting/updatepassword', [AdminController::class, 'newpassword'])->name('admin.newpassword')
+    ->middleware('admin');
 
+    route::get('/tambahakunnelayan', [AdminController::class, 'admintambahdatanelayan'])->name('admin.tambahdatanelayan')
+    ->middleware('admin');
+    route::post('/tambahakunnelayan', [AdminController::class, 'storetambahnelayan'])->name('admin.storetambahnelayan')
+    ->middleware('admin');
+    route::get('/lihatdatanelayan', [AdminController::class, 'viewdatanelayan'])->name('admin.lihatdatanelayan')
+    ->middleware('admin');
 });
 
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
 Route::get('/produk', function () {
-    return view('produk');
+    $barangSewa = Tb_Barangsewa::all();
+    return view('produk', compact('barangSewa'));
 })->name('produk');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/berita', [APIAuthController::class, 'getMarineNews'])->name('berita');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -67,10 +80,16 @@ Route::prefix('nelayan')->group(function () {
     ->middleware('nelayan');
     Route::get('/logout', [NelayanController::class, 'nelayanLogout'])->name('nelayan.logout')
     ->middleware('nelayan');
+
     Route::get('/forgot-password', [NelayanForgotPasswordController::class, 'showForgotPasswordForm'])->name('nelayan.password.request');
     Route::post('/forgot-password', [NelayanForgotPasswordController::class, 'sendResetLinkEmail'])->name('nelayan.password.email');
     Route::get('/forgot-password/{token}', [NelayanForgotPasswordController::class, 'reseturl'])->name('nelayan.password.reset');
     Route::post('/forgot-password/{token}/{email}', [NelayanForgotPasswordController::class, 'processResetPassword'])->name('nelayan.password.update');
-    route::get('/sewakan-alat', [NelayanController::class, 'sewakanalat'])->name('nelayan.sewakan-alat');
-    route::post('/sewaalat', [NelayanController::class, 'storesewaalat'])->name('nealayan.storesewaalat');
+
+    route::get('/sewakan-alat', [NelayanController::class, 'sewakanalat'])->name('nelayan.sewakan-alat')
+    ->middleware('nelayan');
+    route::post('/sewakan-alat', [NelayanController::class, 'storesewaalat'])->name('nealayan.storesewaalat')
+    ->middleware('nelayan');
+    route::get('/viewbarangsewa', [NelayanController::class, 'viewproduk'])->name('nelayan.viewproduk')
+    ->middleware('nelayan');
 });

@@ -37,143 +37,28 @@
       color: white;
       background-attachment: fixed; /* Menetapkan background agar tetap pada posisinya */
    }
-   .kotak0{
-    width: 650px;
-    border-radius: 50px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 700px;
-    margin: 40px auto;
-}
 
-.kotak0 h1{
-    margin-top: 5%;
-    margin-left: 3%;
-    font-family: poppins, sans-serif;
-    font-weight: bold;
-    font-size: 60px;
-    color: black;
-    display: inline-flex;
-}
+   .container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
 
-.kotak0 p{
-    font-family: poppins, sans-serif;
-    font-weight: regular;
-    font-size: 25px;
-    color: #B8B8D2;
-    margin-left: 3%;
-}
+        .news-box {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-.kotak0 form{
-    margin-top: 5px;
-}
+        .news-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
 
-.custom-form-group0 {
-    display: flex;
-    flex-direction: column;
-    font-family: poppins, sans-serif;
-    font-weight: regular;
-    color: black;
-    font-size: 20px;
-}
-
-.custom-form-group0 label {
-    margin-bottom: 5px; 
-    margin-left: 30px;
-}
-
-.custom-form-group0 input {
-    padding: 8px;
-    border-radius: 20px;
-    width: 90%;
-    margin-left: 30px;
-}
-
-
-.flex-container0 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 20px; /* Atur margin sesuai kebutuhan Anda */
-}
-
-.block0 {
-    margin-right: 10px; /* Atur margin sesuai kebutuhan Anda */
-}
-
-.custom-checkbox0 {
-    display: flex;
-    align-items: center;
-}
-
-
-.custom-checkbox0 {
-    border-radius: 4px;
-    border: 1px solid #d2d6dc;
-    padding: 6px;
-}
-
-/* Gaya hover pada checkbox */
-.custom-checkbox0:hover {
-    border-color: #718096;
-}
-
-
-/* Gaya tercentang pada checkbox */
-.custom-checkbox0:checked {
-    background-color: #6366f1;
-    border-color: #6366f1;
-}
-
-.ms-30{
-    width: 45%;
-    height: 56px;
-    background-color: #097ABA;
-    border: none !important;
-    border-radius: 20px;
-    font-family: poppins, sans-serif;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 100px;
-    position: absolute;
-    margin-left: 3%;
-}
-
-.ms-30:hover {
-    background-color: #097ABA;
-    transform: scale(1.1);
-}
-
-.ms-30:active {
-    background-color: #097ABA;
-    transform: scale(0.9);
-}
-
-.ms-40 {
-    margin-top: 50px;
-    width: 91.5%;
-    height: 56px;
-    background-color: #097ABA;
-    border: none !important;
-    border-radius: 20px;
-    font-family: poppins, sans-serif;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    position: absolute;
-    margin-left: 3%;
-}
-
-.ms-40:hover {
-    background-color: #097ABA;
-    transform: scale(1.1);
-}
-
-.ms-40:active {
-    background-color: #097ABA;
-    transform: scale(0.9);
-}
+        .news-content {
+            font-size: 16px;
+        }
    </style>
 </head>
 
@@ -198,19 +83,19 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <a href="{{route('index')}}" class="nav-item nav-link">Dashboard</a>
-                <a href="{{route('about')}}" class="nav-item nav-link">About</a>
+                <a href="{{route('about')}}" class="nav-item nav-link active">About</a>
                 <a href="{{route('produk')}}" class="nav-item nav-link">Produk</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="team.html" class="dropdown-item">Berita Tentang Kelautan</a>
+                        <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
                     </div>
                 </div>
             </div>
             <div class="klik" style="margin-left: 10%">
             <a href="{{route('login')}}">
-              <button type="button" class="btn btn-outline-dark" style=" width:10rem;">Login</button>
+              <button type="button" class="btn btn-outline-dark" style=" width:10rem">Login</button>
             </a>
             <a href="{{route('register')}}">
               <button type="button" class="btn btn-dark" style="width:10rem">Register</button>
@@ -220,53 +105,43 @@
     </nav>
     <!-- Navbar End -->
 
-    <div class="kotak0">
-        <h1>Login</h1>
-        <p>Masukkan email dan password</p>
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('status')" />
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <!-- Email Address -->
-            <div class="custom-form-group0">
-                <x-input-label for="email" :value="__('Masukan Email')" />
-                <x-text-input id="email" class="cmt-4" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-            
-            <!-- Password -->
-            <div class="mt-4 custom-form-group0">
-                <x-input-label for="password" :value="__('Password')" />
-                <x-text-input id="password" class="cmt-4" type="password" name="password" required autocomplete="current-password" />
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-            
-    
-            <!-- Remember Me -->
-            <div class="flex-container0 mt-4">
-                <div class="block0">
-                    <label for="remember_me" class="inline-flex items-center custom-checkbox0">
-                        <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                        <span class="ms-2 text-sm text-gray-600 " style="color: black">{{ __('Remember me') }}</span>
-                    </label>
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Berita</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Berita</li>
+                        </ol>
+                    </nav>
                 </div>
-                @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('lupa kata sandi?') }}
-                </a>
-            @endif
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href='/admin/login'>
-                    Login Sebagai Admin
-                </a>
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href='{{route('nelayan.login_form')}}'>
-                    Menjadi Nelayan
-                </a>
-            </div>                    
-                <button class="ms-30">
-                    {{ __('Login') }}
-                </button>
-            </form> 
-            </div> 
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+    <div class="container">
+        <ul class="news-list">
+            @foreach ($articles['articles'] as $article)
+                <li>
+                    <div class="news-box wow fadeInUp" data-wow-delay="0.1s">
+                        <h2>{{ $article['title'] }}</h2>
+                        <p style="color: black">{{ $article['description'] }}</p>
+                        <p style="color: black">Author: {{ $article['author'] }}</p>
+                        <p style="color: black">Published At: {{ $article['publishedAt'] }}</p>
+                        @if ($article['urlToImage'] != null)
+                            <img src="{{ $article['urlToImage'] }}" alt="Image">
+                        @endif
+                        <p style="color: black">{{ $article['content'] }}</p>
+                        <a href="{{ $article['url'] }}" target="_blank">Read More</a>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
