@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="{{asset('css/style2.css')}}">
     <style>
        body {
     background-size: cover;
@@ -16,7 +16,7 @@
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body style="background-image: url('img/bg.svg')">
+<body style="background-image: url('{{asset('img/bg.svg')}}')">
       <div class="kotak">
         <h1>Lupa Kata Sandi</h1>
         <p>Masukkan email</p>
@@ -29,7 +29,7 @@
                         @csrf
 
                         <!-- Email Address -->
-                        <div class="mb-3">
+                        <div class="custom-form-group">
                             <x-input-label for="email" :value="__('Email')" />
                             <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
                             @error('email')
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
 
-                        <div class="d-flex justify-content-end">
+                        <div class="flex items-center justify-end mt-4">
                             <button type="submit" class="btn btn-danger">
                                 {{ __('Email Password Reset Link') }}
                             </button>

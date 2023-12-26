@@ -88,7 +88,7 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="team.html" class="dropdown-item">Berita Tentang Kelautan</a>
+                        <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
                     </div>
                 </div>

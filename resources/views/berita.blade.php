@@ -83,10 +83,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <a href="{{route('index')}}" class="nav-item nav-link">Dashboard</a>
-                <a href="{{route('about')}}" class="nav-item nav-link active">About</a>
+                <a href="{{route('about')}}" class="nav-item nav-link">About</a>
                 <a href="{{route('produk')}}" class="nav-item nav-link">Produk</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
+                    <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
