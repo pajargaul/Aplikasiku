@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{asset('img/favicon.ico')}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,14 +21,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{asset('lib/animate/animate.min.css" rel="stylesheet')}}">
+    <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <style>
     body {
       background-size: cover;
@@ -52,33 +52,57 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
-        <a href="{{route('index')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-          <img src="img/logo (1).svg" alt="logo" style="width:70%; margin-left:-3%">
+        <a href="{{route('dashboard')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+          <img src="{{asset('img/logo (1).svg')}}" alt="logo" style="width:70%; margin-left:-3%">
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
-                <a href="{{route('index')}}" class="nav-item nav-link">Dashboard</a>
-                <a href="{{route('about')}}" class="nav-item nav-link active">About</a>
-                <a href="{{route('produk')}}" class="nav-item nav-link">Produk</a>
+                <a href="{{route('dashboard')}}" class="nav-item nav-link ">Dashboard</a>
+                <a href="{{route('userabout')}}" class="nav-item nav-link active">About</a>
+                <a href="{{route('userproduk')}}" class="nav-item nav-link">Produk</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
+                        <a href="{{route('usernews')}}" class="dropdown-item">Berita Tentang Kelautan</a>
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
                     </div>
                 </div>
             </div>
-            <div class="klik" style="margin-left: 10%">
-            <a href="{{route('login')}}">
-              <button type="button" class="btn btn-outline-dark" style=" width:10rem">Login</button>
-            </a>
-            <a href="{{route('register')}}">
-              <button type="button" class="btn btn-dark" style="width:10rem">Register</button>
-            </a>
-          </div>
+            <div class="navbar-nav ms-3 p-4 p-lg-0">
+                <div class="nav-item dropdown">
+                    @if(Auth::user()->foto)
+                        <a href="#" style="margin-left: 20%" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="border rounded-circle p-2" src="{{asset('storage/fotouser/'.Auth::user()->foto)}}" style="width: 40px; height: 40px;">
+                            {{Auth::user()->name}}
+                        </a>
+                    @else
+                        <a href="#" style="margin-left: 20%" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                            {{Auth::user()->name}}
+                        </a>
+                    @endif
+                    <div class="dropdown-menu fade-down m-0" style="position: absolute; left: 50%;">
+                        <a href="{{route('profile.edit')}}" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="#" class="dropdown-item">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                                <button class="btn-danger" :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                                </button>
+                            </form>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </nav>
     <!-- Navbar End -->
@@ -325,12 +349,12 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="{{asset('lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset('lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>

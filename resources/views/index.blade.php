@@ -332,8 +332,8 @@
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                             <div class="bg-light d-flex justify-content-center pt-2 px-1">
                                 <a class="btn btn-sm-square btn-primary mx-1" href="https://github.com/PratamaZidan1"><i class="bi bi-github"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="bi bi-google"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href="https://www.instagram.com/ahmdfdzdn388?igsh=MTNiYzNiMzkwZA=="><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=argentu10@gmail.com"><i class="bi bi-google"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://www.instagram.com/pratamaziidan/"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                         <div class="text-center p-4">

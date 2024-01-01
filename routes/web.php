@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\Adminnewpassword;
 use App\Http\Controllers\Auth\AdminForgotPasswordController;
 use App\Http\Controllers\Auth\NelayanForgotPasswordController;
+use App\Http\Controllers\PenyewaanController;
 use App\Models\Tb_Barangsewa;
 
 /*
@@ -69,10 +70,18 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/delete-profile-photo', [ProfileController::class, 'deletepotouser'])->name('delete.profile.photo');
+    Route::post('/update-profile-photo',[ProfileController::class, 'uploadpotouser'] )->name('update.profile.photo');
+    Route::get('/userabout', [ProfileController::class, 'userabout'])->name('userabout');
+    Route::get('/userproduk', [ProfileController::class, 'userproduk'])->name('userproduk');
+    Route::get('/usernews', [ProfileController::class, 'usernews'])->name('usernews');
+    Route::get('/checkout/{kode_barang}', [PenyewaanController::class, 'sewa'])->name('checkout');
+    Route::post('/checkout', [PenyewaanController::class, 'storesewa'])->name('storecheckout');
 });
 require __DIR__ . '/auth.php';
+
 Route::prefix('nelayan')->group(function () {
     Route::get('/login', [NelayanController::class, 'index'])->name('nelayan.login_form');
     Route::post('/login/owner', [NelayanController::class, 'Login'])->name('nelayan.login');

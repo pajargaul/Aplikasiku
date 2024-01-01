@@ -75,8 +75,7 @@ class NelayanController extends Controller
             'foto_barang' => $namaFileUnik,
             'nelayan_id' => Auth::guard('nelayan')->user()->id,
         ]);
-
-        // Pengecekan variabel $barangSewa
+        
         if ($barangSewa) {
            $fotoPath;
             return redirect()->route('nelayan.sewakan-alat')->with('st', 'Data barang sewa berhasil disimpan.');

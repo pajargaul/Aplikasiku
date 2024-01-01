@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{asset('img/favicon.ico')}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,14 +21,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{asset('lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <style>
     body {
       background-size: cover;
@@ -74,7 +75,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
-        <a href="{{route('index')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="{{route('dashboard')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
           <img src="img/logo (1).svg" alt="logo" style="width:70%; margin-left:-3%">
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -82,25 +83,49 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
-                <a href="{{route('index')}}" class="nav-item nav-link">Dashboard</a>
-                <a href="{{route('about')}}" class="nav-item nav-link">About</a>
-                <a href="{{route('produk')}}" class="nav-item nav-link active">Produk</a>
+                <a href="{{route('dashboard')}}" class="nav-item nav-link ">Dashboard</a>
+                <a href="{{route('userabout')}}" class="nav-item nav-link">About</a>
+                <a href="{{route('userproduk')}}" class="nav-item nav-link active">Produk</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
+                        <a href="{{route('usernews')}}" class="dropdown-item">Berita Tentang Kelautan</a>
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
                     </div>
                 </div>
             </div>
-            <div class="klik" style="margin-left: 10%">
-            <a href="{{route('login')}}">
-              <button type="button" class="btn btn-outline-dark" style=" width:10rem">Login</button>
-            </a>
-            <a href="{{route('register')}}">
-              <button type="button" class="btn btn-dark" style="width:10rem">Register</button>
-            </a>
-          </div>
+            <div class="navbar-nav ms-3 p-4 p-lg-0">
+                <div class="nav-item dropdown">
+                    @if(Auth::user()->foto)
+                        <a href="#" style="margin-left: 20%" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="border rounded-circle p-2" src="{{asset('storage/fotouser/'.Auth::user()->foto)}}" style="width: 40px; height: 40px;">
+                            {{Auth::user()->name}}
+                        </a>
+                    @else
+                        <a href="#" style="margin-left: 20%" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                            {{Auth::user()->name}}
+                        </a>
+                    @endif
+                    <div class="dropdown-menu fade-down m-0" style="position: absolute; left: 50%;">
+                        <a href="{{route('profile.edit')}}" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="#" class="dropdown-item">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                                <button class="btn-danger" :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                                </button>
+                            </form>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </nav>
     <!-- Navbar End -->
@@ -129,7 +154,7 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Kategori</h6>
-                <h1 class="mb-5">Kategori Produk</h1>
+                <h1 class="mb-5" style="color: black">Kategori Produk</h1>
             </div>
             <div class="row g-3">
                 <div class="col-lg-7 col-md-6">
@@ -184,49 +209,80 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $barang->nama_barang }}</h5>
                     <p class="card-text" style="color: black">Rp {{ number_format($barang->harga, 0, ',', '.') }},-</p>
-                    <a href="#" class="btn btn-warning">Detail</a>
-                    <a href="#" class="btn btn-danger">Beli</a>
+                    <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#productModal{{ $barang->kode_barang }}">Detail</a>
+                    <a href="{{ route('checkout', ['kode_barang' => $barang->kode_barang]) }}" class="btn btn-danger">Sewa</a>
                 </div>
             </div>
         @endforeach
     </div>
+
+    @foreach($barangSewa as $barang)
+    <!-- Existing product card code -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="productModal{{ $barang->kode_barang }}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel" style="color: black">{{ $barang->nama_barang }} - Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('storage/fotobarang/' . $barang->foto_barang) }}" class="card-img-top" alt="{{ $barang->nama_barang }}">
+                    <p style="color: black">Kode Barang : {{ $barang->kode_barang }}</p>
+                    <p style="color: black">Kondisi : {{ $barang->kondisi }}</p>
+                    <p style="color: black">Jumlah Barang ini Tersedia : {{ $barang->jumlah }}</p>
+                    <p style="color: black">Pemilik : {{ $barang->nelayan->nama}}</p>
+                    <p style="color: black">Lokasi : {{ $barang->nelayan->alamat}}</p>
+                    <p style="color: black">Nomor Telepon Penyewa : {{ $barang->nelayan->nomer_telepon}}</p>
+                    <h6 style="color: red">Harga: Rp {{ number_format($barang->harga, 0, ',', '.') }},-</h6>
+                    <!-- Add other product details here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{{ route('checkout', ['kode_barang' => $barang->kode_barang]) }}" class="btn btn-danger">Sewa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
 
     <!-- Testimonial Start -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="text-center">
                 <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
-                <h1 class="mb-5">Para Pengguna FishApp</h1>
+                <h1 class="mb-5" style="color: black">Para Pengguna FishApp</h1>
             </div>
             <div class="owl-carousel testimonial-carousel position-relative">
                 <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
+                    <h5 class="mb-0" style="color: black">Client Name</h5>
+                    <p style="color: black">Profession</p>
                     <div class="testimonial-text bg-light text-center p-4">
                     <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
+                    <h5 class="mb-0" style="color: black">Client Name</h5>
+                    <p style="color: black">Profession</p>
                     <div class="testimonial-text bg-light text-center p-4">
                     <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
+                    <h5 class="mb-0" style="color: black">Client Name</h5>
+                    <p style="color: black">Profession</p>
                     <div class="testimonial-text bg-light text-center p-4">
                     <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
                     <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Client Name</h5>
-                    <p>Profession</p>
+                    <h5 class="mb-0" style="color: black">Client Name</h5>
+                    <p style="color: black">Profession</p>
                     <div class="testimonial-text bg-light text-center p-4">
                     <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
                     </div>
@@ -294,12 +350,14 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Add this to your HTML file -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset('lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>
