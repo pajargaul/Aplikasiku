@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Tb_Barangsewa;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class APIAuthController extends Controller
@@ -91,9 +94,164 @@ class APIAuthController extends Controller
     public function ViewBarangsewa(Request $request){
         try {
             $barangsewas = Tb_Barangsewa::all();
+    
+            $barangsewas->each(function ($barangsewa) {
+                $barangsewa->foto_url = asset('storage/fotobarang/' . $barangsewa->foto_barang);
+            });
+    
             return response()->json(['success' => true, 'data' => $barangsewas], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
+
+    public function storesewaalat(Request $request)
+{
+    try {
+        $request->validate([
+            'nama_barang' => 'required|string',
+            'harga' => 'required|numeric',
+            'kondisi' => 'required|in:Baik,Kurang_baik,Rusak',
+            'jumlah' => 'required|integer',
+            'foto_barang' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Mendapatkan nilai maksimum kode_barang dari database
+        $maxKodeBarang = Tb_Barangsewa::max('kode_barang');
+
+        // Mengekstrak nomor dari kode_barang, menambahkan 1, dan memformatnya menjadi tiga digit dengan leading zero
+        $nextNumber = intval(substr($maxKodeBarang, 1)) + 1;
+
+        // Format nomor menjadi tiga digit dengan leading zero
+        $formattedNumber = str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
+        // Membuat kode_barang baru
+        $newKodeBarang = 'B' . $formattedNumber;
+
+        $fotoFile = $request->file('foto_barang');
+        $namaFileUnik = Str::uuid() . '_' . time() . '_' . $fotoFile->getClientOriginalName();
+        $fotoPath = $fotoFile->storeAs('public/fotobarang', $namaFileUnik);
+
+        $barangSewa = Tb_Barangsewa::create([
+            'kode_barang' => $newKodeBarang,
+            'nama_barang' => $request->input('nama_barang'),
+            'harga' => $request->input('harga'),
+            'kondisi' => $request->input('kondisi'),
+            'jumlah' => $request->input('jumlah'),
+            'foto_barang' => $namaFileUnik,
+            'nelayan_id' => Auth::guard('nelayan')->user()->id,
+        ]);
+
+        if ($barangSewa) {
+            return response()->json(['success' => true, 'message' => 'Data barang sewa berhasil disimpan.']);
+        } else {
+            return response()->json(['gagal' => false, 'message' => 'Gagal menyimpan data barang sewa. Silakan coba lagi.'], 500);
+        }
+    } catch (\Exception $e) {
+        return response()->json(['gagal' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function uploadpotouser(Request $request)
+{
+    try {
+        $request->validate([
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if (Auth::user()->foto) {
+            Storage::delete('public/fotouser/' . Auth::user()->foto);
+        }
+
+        $fotoFile = $request->file('foto');
+        $namaFileUnik = Str::uuid() . '_' . time() . '_' . $fotoFile->getClientOriginalName();
+        $fotoPath = $fotoFile->storeAs('public/fotouser', $namaFileUnik);
+
+        $up = DB::table('users')
+            ->where('email', Auth::user()->email)
+            ->update([
+                'foto' => $namaFileUnik,
+            ]);
+
+        if ($up) {
+            return response()->json(['success' => true, 'message' => 'Foto profil berhasil diperbarui.', 'foto_path' => asset('storage/fotouser/' . $namaFileUnik)], 200);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Gagal menyimpan. Silakan coba lagi.'], 500);
+        }
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function deletepotouser(Request $request)
+{
+    try {
+        // Ambil ID user dari request atau sesuaikan dengan kebutuhan
+        $userId = $request->user()->id;
+
+        // Ambil user dari database
+        $user = User::findOrFail($userId);
+
+        // Hapus foto dari storage jika ada
+        if ($user->foto) {
+            Storage::delete('public/fotouser/' . $user->foto);
+        }
+
+        // Hapus foto dari database
+        $user->foto = null;
+        $user->save();
+
+        // Berikan respons JSON sesuai kebutuhan
+        return response()->json(['success' => true, 'message' => 'Foto profil dihapus.'], 200);
+    } catch (\Exception $e) {
+        // Berikan respons JSON untuk kasus kesalahan
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function update(Request $request)
+{
+    try {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'alamat' => 'string',
+            'nomer_telepon' => 'string',
+        ]);
+
+        $up = DB::table('users')
+            ->where('email', Auth::user()->email)
+            ->update([
+                'name' => $request->input('name'),
+                'alamat' => $request->input('alamat'),
+                'nomer_telepon' => $request->input('nomer_telepon'),
+            ]);
+
+        if ($up) {
+            return response()->json(['success' => true, 'message' => 'Profil berhasil diperbarui.'], 200);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Gagal menyimpan. Silakan coba lagi.'], 500);
+        }
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function getLoggedInUserData()
+{
+    try {
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+
+        if ($user) {
+            // Pengguna sedang login, kembalikan data dalam respons JSON
+            return response()->json(['success' => true, 'data' => $user], 200);
+        } else {
+            // Tidak ada pengguna yang sedang login
+            return response()->json(['success' => false, 'message' => 'Pengguna tidak terautentikasi.'], 401);
+        }
+    } catch (\Exception $e) {
+        // Kesalahan server
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
 }
