@@ -23,4 +23,4 @@ Route::post('register', [APIAuthController::class, 'register']);
 Route::post('login', [APIAuthController::class, 'login']);
 
 Route::get('/berita', [APIAuthController::class, 'getMarineNews'])->name('berita');
-Route::get('/barangsewa', [APIAuthController::class, 'viewbarangsewa'])->name('barangsewa');
+Route::get('/barangsewa', [APIAuthController::class, 'viewbarangsewa']);
