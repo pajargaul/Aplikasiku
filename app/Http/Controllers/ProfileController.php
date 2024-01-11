@@ -158,4 +158,8 @@ class ProfileController extends Controller
         $barangSewa = Tb_Barangsewa::all();
         return view('profile.produk', compact('barangSewa'));
     }
+
+    public function comingsonn(){
+        return view('profile.comingsonn');
+    }
 }

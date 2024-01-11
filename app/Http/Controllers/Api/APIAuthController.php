@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Tb_Barangsewa;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Nelayan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -64,6 +65,38 @@ class APIAuthController extends Controller
             ]);
         }
     }
+
+
+    public function loginnelayan(Request $request)
+{
+    try {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('nelayan')->attempt($credentials)) {
+            $user = Auth::guard('nelayan')->user();
+            $success['token'] = $user->createToken('auth_token')->plainTextToken;
+            $success['name'] = $user->name;
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Login berhasil',
+                'data' => $success
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email dan password salah',
+                'data' => null
+            ]);
+        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage(),
+            'data' => null
+        ], 500);
+    }
+}
 
     public function getMarineNews()
     {
@@ -139,7 +172,7 @@ class APIAuthController extends Controller
             'kondisi' => $request->input('kondisi'),
             'jumlah' => $request->input('jumlah'),
             'foto_barang' => $namaFileUnik,
-            'nelayan_id' => Auth::guard('nelayan')->user()->id,
+            'nelayan_id' => $request->user()->id,
         ]);
 
         if ($barangSewa) {
@@ -149,6 +182,18 @@ class APIAuthController extends Controller
         }
     } catch (\Exception $e) {
         return response()->json(['gagal' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function deleteBarangSewa($kode_barang)
+{
+    try {
+        $barangSewa = Tb_Barangsewa::where('kode_barang', $kode_barang)->first();
+         $barangSewa->delete();
+        Storage::delete('public/fotobarang/' . $barangSewa->foto_barang);
+        return response()->json(['success' => true, 'message' => 'Data barang sewa berhasil dihapus.']);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
     }
 }
 
@@ -209,6 +254,7 @@ public function deletepotouser(Request $request)
     }
 }
 
+
 public function update(Request $request)
 {
     try {
@@ -236,11 +282,10 @@ public function update(Request $request)
     }
 }
 
-public function getLoggedInUserData()
+public function getLoggedInUserData(Request $request)
 {
     try {
-        // Mengambil data pengguna yang sedang login
-        $user = Auth::user();
+        $user = $request->user();
 
         if ($user) {
             // Pengguna sedang login, kembalikan data dalam respons JSON
@@ -254,4 +299,53 @@ public function getLoggedInUserData()
         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
     }
 }
+
+public function updateBarangSewa(Request $request, $kode_barang)
+{
+    try {
+        $request->validate([
+            'nama_barang' => 'nullable|string',
+            'harga' => 'nullable|numeric',
+            'kondisi' => 'nullable|in:Baik,Kurang_baik,Rusak',
+            'jumlah' => 'nullable|integer',
+            'foto_barang' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        
+        
+
+        // Temukan barang sewa berdasarkan kode_barang
+        $barangSewa = Tb_Barangsewa::where('kode_barang', $kode_barang)->first();
+
+        if (!$barangSewa) {
+            return response()->json(['success' => false, 'message' => 'Barang sewa tidak ditemukan.'], 404);
+        }
+
+        // Perbarui data barang sewa
+        $barangSewa->nama_barang = $request->input('nama_barang');
+        $barangSewa->harga = $request->input('harga');
+        $barangSewa->kondisi = $request->input('kondisi');
+        $barangSewa->jumlah = $request->input('jumlah');
+
+        // Perbarui foto barang jika ada yang diunggah
+        if ($request->hasFile('foto_barang')) {
+            $fotoFile = $request->file('foto_barang');
+            $namaFileUnik = Str::uuid() . '_' . time() . '_' . $fotoFile->getClientOriginalName();
+            $fotoPath = $fotoFile->storeAs('public/fotobarang', $namaFileUnik);
+
+            // Hapus foto lama dari penyimpanan
+            Storage::delete('public/fotobarang/' . $barangSewa->foto_barang);
+
+            $barangSewa->foto_barang = $namaFileUnik;
+        }
+
+        // Simpan perubahan ke database
+        $barangSewa->save();
+
+        return response()->json(['success' => true, 'message' => 'Data barang sewa berhasil diperbarui.']);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+
 }

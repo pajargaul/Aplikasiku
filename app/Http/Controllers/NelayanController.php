@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penyewaan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,5 +89,13 @@ class NelayanController extends Controller
     public function viewproduk(){
         $barangSewa = Tb_Barangsewa::where('nelayan_id', Auth::guard('nelayan')->user()->id)->get();
         return view('nelayan.viewbarangsewa', compact('barangSewa'));
+    }
+
+    public function pesanan(){
+        $barangSewa = Tb_Barangsewa::where('nelayan_id', Auth::guard('nelayan')->user()->id)->get();
+        $kodeBarangArray = $barangSewa->pluck('kode_barang')->toArray();
+        $pesanan = Penyewaan::whereIn('kode_barang_id', $kodeBarangArray)->get();
+        return view('nelayan.pesanan', compact('pesanan'));
+        // print($pesanan);
     }
 }

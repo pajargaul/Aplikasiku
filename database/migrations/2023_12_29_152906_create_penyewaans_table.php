@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('tb_penyewaans', function (Blueprint $table) {
             $table->string('kode_sewa')->primary();
             $table->integer('jumlah_sewa');
-            $table->dateTime('jam_sewa');
-            $table->dateTime('jam_pengembalian');
+            $table->integer('jumlah_waktu');
+            $table->dateTime('jam_sewa')->nullable();
+            $table->dateTime('jam_pengembalian')->nullable();
             $table->string('foto_sebelum')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->string('kode_barang_id');

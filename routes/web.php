@@ -53,6 +53,10 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+Route::get('/comingsoon', function () {
+    return view('comingsonn');
+})->name('comingsonn');
+
 Route::get('/produk', function () {
     $barangSewa = Tb_Barangsewa::all();
     return view('produk', compact('barangSewa'));
@@ -79,6 +83,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/usernews', [ProfileController::class, 'usernews'])->name('usernews');
     Route::get('/checkout/{kode_barang}', [PenyewaanController::class, 'sewa'])->name('checkout');
     Route::post('/checkout', [PenyewaanController::class, 'storesewa'])->name('storecheckout');
+    Route::get('/usercomingsoon', [ProfileController::class, 'comingsonn'])->name('usercomingsoon');
+    route::get('/keranjang', [PenyewaanController::class, 'keranjang'])->name('keranjang');
+    Route::get('/hubungi-pemilik/{id}', [PenyewaanController::class, 'hubungiPemilik'])->name('hubungi.pemilik');
 });
 require __DIR__ . '/auth.php';
 
@@ -101,4 +108,7 @@ Route::prefix('nelayan')->group(function () {
     ->middleware('nelayan');
     route::get('/viewbarangsewa', [NelayanController::class, 'viewproduk'])->name('nelayan.viewproduk')
     ->middleware('nelayan');
+    route::get('/pesanan', [NelayanController::class, 'pesanan'])->name('nelayan.pesanan')
+    ->middleware('nelayan');
+    Route::get('/mulaisewa/{kode_sewa}', [PenyewaanController::class, 'mulaisewa'])->name('penyewaan.mulaisewa');
 });

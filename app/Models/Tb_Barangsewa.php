@@ -10,6 +10,7 @@ class Tb_Barangsewa extends Model
     use HasFactory;
     protected $table = 'tb_barangsewas';
 
+    // protected $primaryKey = 'kode_barang';
     protected $fillable = ['kode_barang', 
                             'nama_barang', 
                             'harga',

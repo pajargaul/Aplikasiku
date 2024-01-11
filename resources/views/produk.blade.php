@@ -114,7 +114,6 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">Produk</li>
                         </ol>
                     </nav>
@@ -184,12 +183,43 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $barang->nama_barang }}</h5>
                     <p class="card-text" style="color: black">Rp {{ number_format($barang->harga, 0, ',', '.') }},-</p>
-                    <a href="#" class="btn btn-warning">Detail</a>
-                    <a href="#" class="btn btn-danger">Beli</a>
+                    <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#productModal{{ $barang->kode_barang }}">Detail</a>
+                    <a href="{{ route('checkout', ['kode_barang' => $barang->kode_barang]) }}" class="btn btn-danger">Sewa</a>
                 </div>
             </div>
         @endforeach
     </div>
+
+    @foreach($barangSewa as $barang)
+    <!-- Existing product card code -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="productModal{{ $barang->kode_barang }}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel" style="color: black">{{ $barang->nama_barang }} - Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('storage/fotobarang/' . $barang->foto_barang) }}" class="card-img-top" alt="{{ $barang->nama_barang }}">
+                    <p style="color: black">Kode Barang : {{ $barang->kode_barang }}</p>
+                    <p style="color: black">Kondisi : {{ $barang->kondisi }}</p>
+                    <p style="color: black">Jumlah Barang ini Tersedia : {{ $barang->jumlah }}</p>
+                    <p style="color: black">Pemilik : {{ $barang->nelayan->nama}}</p>
+                    <p style="color: black">Lokasi : {{ $barang->nelayan->alamat}}</p>
+                    <p style="color: black">Nomor Telepon Penyedia : {{ $barang->nelayan->nomer_telepon}}</p>
+                    <h6 style="color: red">Harga: Rp {{ number_format($barang->harga, 0, ',', '.') }},-</h6>
+                    <!-- Add other product details here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{{ route('checkout', ['kode_barang' => $barang->kode_barang]) }}" class="btn btn-danger">Sewa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
 
     <!-- Testimonial Start -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">

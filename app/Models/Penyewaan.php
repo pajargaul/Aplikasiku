@@ -13,6 +13,7 @@ class Penyewaan extends Model
     protected $fillable = [
         'kode_sewa',
         'jumlah_sewa',
+        'jumlah_waktu',
         'jam_sewa',
         'jam_pengembalian',
         'foto_sebelum',
@@ -22,12 +23,12 @@ class Penyewaan extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function barangSewa()
     {
-        return $this->belongsTo(Tb_Barangsewa::class, 'kode_barang_id');
+        return $this->belongsTo(Tb_Barangsewa::class, 'kode_barang_id', 'kode_barang');
     }
 
     public function pengembalian()

@@ -92,7 +92,6 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">About</li>
                         </ol>
                     </nav>
@@ -107,36 +106,45 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a href="{{route('comingsonn')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                             <img src="{{asset('img/lokasi.png')}}" alt="">
+                            
                             <h5 class="mb-3">Lokasi Ikan</h5>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="{{route('produk')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/swaa alat.png')}}" alt="">
                             <h5 class="mb-3">Sewa Alat</h5>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <a href="{{route('comingsonn')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/iwak_wader-removebg-preview 1.png')}}" alt="" style="width: 99%">
                             <h5 class="mb-3">Pasar Ikan</h5>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <a href="{{route('comingsonn')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/🦆 icon _history_.png')}}" alt="" style="width: 99%">
                             <h5 class="mb-3">History</h5>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -175,7 +183,7 @@
                             <p class="mb-0" style="color: black"><i class="fa fa-arrow-right text-primary me-2"></i>Pemesanan Online yang Mudah</p>
                         </div>
                     </div>
-                    <a class="btn btn-warning py-3 px-5 mt-2" href="">Read More</a>
+                    <a class="btn btn-warning py-3 px-5 mt-2" href="{{route('about')}}">Selengkapnya</a>
                 </div>
             </div>
         </div>

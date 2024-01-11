@@ -50,8 +50,8 @@
     <!-- Spinner End -->
 
 
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
+     <!-- Navbar Start -->
+     <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
         <a href="{{route('dashboard')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
           <img src="{{asset('img/logo (1).svg')}}" alt="logo" style="width:70%; margin-left:-3%">
         </a>
@@ -60,7 +60,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
-                <a href="{{route('dashboard')}}" class="nav-item nav-link ">Dashboard</a>
+                <a href="{{route('dashboard')}}" class="nav-item nav-link">Dashboard</a>
                 <a href="{{route('userabout')}}" class="nav-item nav-link">About</a>
                 <a href="{{route('userproduk')}}" class="nav-item nav-link">Produk</a>
                 <div class="nav-item dropdown">
@@ -70,11 +70,23 @@
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
                     </div>
                 </div>
+                <a href="{{route('keranjang')}}" class="nav-item nav-link">
+                    @php
+                        $jumlahTabel = \App\Models\Penyewaan::where('user_id', Auth::user()->id)->count();
+                    @endphp
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-cart4" viewBox="0 0 16 16">
+                        <path
+                            d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                    </svg>
+                    <span class="badge badge-pill badge-danger"
+                        style="color: red; margin-left:-20%;">{{ $jumlahTabel }}</span>
+                </a>                     
             </div>
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <div class="nav-item dropdown">
                     @if(Auth::user()->foto)
-                        <a href="#" style="margin-left: 20%" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">
+                        <a href="#" style="margin-left: 20%" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="border rounded-circle p-2" src="{{asset('storage/fotouser/'.Auth::user()->foto)}}" style="width: 40px; height: 40px;">
                             {{Auth::user()->name}}
                         </a>

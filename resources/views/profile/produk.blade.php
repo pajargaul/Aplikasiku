@@ -76,14 +76,14 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
         <a href="{{route('dashboard')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-          <img src="img/logo (1).svg" alt="logo" style="width:70%; margin-left:-3%">
+          <img src="{{asset('img/logo (1).svg')}}" alt="logo" style="width:70%; margin-left:-3%">
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
-                <a href="{{route('dashboard')}}" class="nav-item nav-link ">Dashboard</a>
+                <a href="{{route('dashboard')}}" class="nav-item nav-link">Dashboard</a>
                 <a href="{{route('userabout')}}" class="nav-item nav-link">About</a>
                 <a href="{{route('userproduk')}}" class="nav-item nav-link active">Produk</a>
                 <div class="nav-item dropdown">
@@ -93,6 +93,18 @@
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
                     </div>
                 </div>
+                <a href="{{route('keranjang')}}" class="nav-item nav-link">
+                    @php
+                        $jumlahTabel = \App\Models\Penyewaan::where('user_id', Auth::user()->id)->count();
+                    @endphp
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-cart4" viewBox="0 0 16 16">
+                        <path
+                            d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                    </svg>
+                    <span class="badge badge-pill badge-danger"
+                        style="color: red; margin-left:-20%;">{{ $jumlahTabel }}</span>
+                </a>                      
             </div>
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <div class="nav-item dropdown">
@@ -139,7 +151,6 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">Produk</li>
                         </ol>
                     </nav>
@@ -234,7 +245,7 @@
                     <p style="color: black">Jumlah Barang ini Tersedia : {{ $barang->jumlah }}</p>
                     <p style="color: black">Pemilik : {{ $barang->nelayan->nama}}</p>
                     <p style="color: black">Lokasi : {{ $barang->nelayan->alamat}}</p>
-                    <p style="color: black">Nomor Telepon Penyewa : {{ $barang->nelayan->nomer_telepon}}</p>
+                    <p style="color: black">Nomor Telepon Penyedia : {{ $barang->nelayan->nomer_telepon}}</p>
                     <h6 style="color: red">Harga: Rp {{ number_format($barang->harga, 0, ',', '.') }},-</h6>
                     <!-- Add other product details here -->
                 </div>

@@ -37,28 +37,6 @@
       color: white;
       background-attachment: fixed; /* Menetapkan background agar tetap pada posisinya */
    }
-
-   .container {
-            max-width: 800px;
-            margin: 20px auto;
-        }
-
-        .news-box {
-            background-color: #fff;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .news-title {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .news-content {
-            font-size: 16px;
-        }
    </style>
 </head>
 
@@ -72,8 +50,8 @@
     <!-- Spinner End -->
 
 
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
+     <!-- Navbar Start -->
+     <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
         <a href="{{route('index')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
           <img src="img/logo (1).svg" alt="logo" style="width:70%; margin-left:-3%">
         </a>
@@ -83,10 +61,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <a href="{{route('index')}}" class="nav-item nav-link">Dashboard</a>
-                <a href="{{route('about')}}" class="nav-item nav-link">About</a>
+                <a href="{{route('about')}}" class="nav-item nav-link active">About</a>
                 <a href="{{route('produk')}}" class="nav-item nav-link">Produk</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
@@ -105,46 +83,9 @@
     </nav>
     <!-- Navbar End -->
 
-    <!-- Header Start -->
-    <div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Berita</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Berita</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Header End -->
-    <div class="container">
-        <ul class="news-list">
-            @foreach ($articles['articles'] as $article)
-                {{-- Check if the title contains keywords related to sea, fish, port, or ship --}}
-                @if (stripos($article['title'], 'laut') !== false || stripos($article['title'], 'ikan') !== false || stripos($article['title'], 'pelabuhan') !== false || stripos($article['title'], 'kapal') !== false)
-                    <li>
-                        <div class="news-box wow fadeInUp" data-wow-delay="0.1s">
-                            <h2>{{ $article['title'] }}</h2>
-                            <p style="color: black">{{ $article['description'] }}</p>
-                            <p style="color: black">Author: {{ $article['author'] }}</p>
-                            <p style="color: black">Published At: {{ $article['publishedAt'] }}</p>
-                            @if ($article['urlToImage'] != null)
-                                <img src="{{ $article['urlToImage'] }}" alt="Image">
-                            @endif
-                            <p style="color: black">{{ $article['content'] }}</p>
-                            <a href="{{ $article['url'] }}" target="_blank">Read More</a>
-                        </div>
-                    </li>
-                @endif
-            @endforeach
-        </ul>
-    </div>
-    
+
+    <img src="{{asset('img/Coming soon.png')}}" alt="gambar">
+        
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">

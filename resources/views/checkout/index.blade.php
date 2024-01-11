@@ -1,25 +1,3 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
-</head>
-<body>
-    <h1>Detail Barang</h1>
-
-    @if(isset($barang))
-        <div>
-            <img src="{{ asset('storage/fotobarang/' . $barang->foto_barang) }}" alt="{{ $barang->nama_barang }}">
-        </div>
-        <h2>{{ $barang->nama_barang }}</h2>
-        <!-- Tambahkan informasi barang lainnya sesuai kebutuhan -->
-    @else
-        <p>Barang tidak ditemukan</p>
-    @endif
-</body>
-</html> --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,6 +93,18 @@
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
                     </div>
                 </div>
+                <a href="{{route('keranjang')}}" class="nav-item nav-link">
+                    @php
+                        $jumlahTabel = \App\Models\Penyewaan::where('user_id', Auth::user()->id)->count();
+                    @endphp
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-cart4" viewBox="0 0 16 16">
+                        <path
+                            d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                    </svg>
+                    <span class="badge badge-pill badge-danger"
+                        style="color: red; margin-left:-20%;">{{ $jumlahTabel }}</span>
+                </a>                
             </div>
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <div class="nav-item dropdown">
@@ -149,9 +139,6 @@
             </div>
             
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
-          </svg>
     </nav>
     <!-- Navbar End -->
 
@@ -215,10 +202,16 @@
                           </div>
                           <button type="submit" class="btn btn-danger py-3 px-5 mt-2" href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
                             <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
-                          </svg>  Pesan Sekarang</button>
+                          </svg>  Sewa Sekarang</button>
                           @if(session('st'))
                           <div class="alert alert-danger">
                               {{ session('st') }}
+                          </div>
+                      @endif
+
+                      @if(session('berhasil'))
+                          <div class="alert alert-primary">
+                              {{ session('berhasil') }}
                           </div>
                       @endif
                   

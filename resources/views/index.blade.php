@@ -99,8 +99,8 @@
                                   meningkatkan hasil tangkapan dan memaksimalkan waktu di laut. Bagi nelayan
                                   dengan perahu sedang-kecil yang tidak memiliki alat pendeteksi ikan
                                   FishApp adalah jawaban atas kebutuhan Anda.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                                  <a href="{{route('about')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Selengkapnya</a>
+                                  <a href="{{route('register')}}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Daftar Sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -117,8 +117,8 @@
                                 <p class="fs-5 text-white mb-4 pb-2">Memantau Cuaca dan Suhu Air Real-Time: Kami menyediakan informasi
                                   cuaca dan suhu air yang akurat dan up-to-date, sehingga Anda bisa merencanakan
                                   penangkapan ikan Anda dengan lebih baik.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                                  <a href="{{route('about')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Selengkapnya</a>
+                                  <a href="{{route('register')}}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Daftar Sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -134,8 +134,8 @@
                               <h1 class="display-3 text-white animated slideInDown">Maksimalkan Hasil Tangkapan Ikan di Laut</h1>
                               <p class="fs-5 text-white mb-4 pb-2">FishApp membantu Anda meningkatkan efisiensi penangkapan ikan Anda,
                                 sehingga Anda bisa membawa pulang hasil yang lebih besar..</p>
-                              <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
-                              <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                              <a href="{{route('about')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Selengkapnya</a>
+                              <a href="{{route('register')}}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Daftar Sekarang</a>
                           </div>
                       </div>
                   </div>
@@ -151,36 +151,45 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a href="{{route('comingsonn')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                             <img src="{{asset('img/lokasi.png')}}" alt="">
+                            
                             <h5 class="mb-3">Lokasi Ikan</h5>
                         </div>
                     </div>
+                </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="{{route('produk')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/swaa alat.png')}}" alt="">
                             <h5 class="mb-3">Sewa Alat</h5>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <a href="{{route('comingsonn')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/iwak_wader-removebg-preview 1.png')}}" alt="" style="width: 99%">
                             <h5 class="mb-3">Pasar Ikan</h5>
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <a href="{{route('comingsonn')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/🦆 icon _history_.png')}}" alt="" style="width: 99%">
                             <h5 class="mb-3">History</h5>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -219,7 +228,7 @@
                             <p class="mb-0" style="color: black"><i class="fa fa-arrow-right text-primary me-2"></i>Pemesanan Online yang Mudah</p>
                         </div>
                     </div>
-                    <a class="btn btn-warning py-3 px-5 mt-2" href="">Read More</a>
+                    <a class="btn btn-warning py-3 px-5 mt-2" href="{{route('about')}}">Selengkapnya</a>
                 </div>
             </div>
         </div>
