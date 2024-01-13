@@ -8,6 +8,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\Adminnewpassword;
 use App\Http\Controllers\Auth\AdminForgotPasswordController;
 use App\Http\Controllers\Auth\NelayanForgotPasswordController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\PenyewaanController;
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 use App\Models\Tb_Barangsewa;
 
 /*
@@ -52,6 +56,13 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+<<<<<<< HEAD
+=======
+Route::get('/comingsoon', function () {
+    return view('comingsonn');
+})->name('comingsonn');
+
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 Route::get('/produk', function () {
     $barangSewa = Tb_Barangsewa::all();
     return view('produk', compact('barangSewa'));
@@ -69,10 +80,28 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+<<<<<<< HEAD
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 require __DIR__ . '/auth.php';
+=======
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/delete-profile-photo', [ProfileController::class, 'deletepotouser'])->name('delete.profile.photo');
+    Route::post('/update-profile-photo',[ProfileController::class, 'uploadpotouser'] )->name('update.profile.photo');
+    Route::get('/userabout', [ProfileController::class, 'userabout'])->name('userabout');
+    Route::get('/userproduk', [ProfileController::class, 'userproduk'])->name('userproduk');
+    Route::get('/usernews', [ProfileController::class, 'usernews'])->name('usernews');
+    Route::get('/checkout/{kode_barang}', [PenyewaanController::class, 'sewa'])->name('checkout');
+    Route::post('/checkout', [PenyewaanController::class, 'storesewa'])->name('storecheckout');
+    Route::get('/usercomingsoon', [ProfileController::class, 'comingsonn'])->name('usercomingsoon');
+    route::get('/keranjang', [PenyewaanController::class, 'keranjang'])->name('keranjang');
+    Route::get('/hubungi-pemilik/{id}', [PenyewaanController::class, 'hubungiPemilik'])->name('hubungi.pemilik');
+});
+require __DIR__ . '/auth.php';
+
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 Route::prefix('nelayan')->group(function () {
     Route::get('/login', [NelayanController::class, 'index'])->name('nelayan.login_form');
     Route::post('/login/owner', [NelayanController::class, 'Login'])->name('nelayan.login');
@@ -92,4 +121,17 @@ Route::prefix('nelayan')->group(function () {
     ->middleware('nelayan');
     route::get('/viewbarangsewa', [NelayanController::class, 'viewproduk'])->name('nelayan.viewproduk')
     ->middleware('nelayan');
+<<<<<<< HEAD
+=======
+    route::get('/pesanan', [NelayanController::class, 'pesanan'])->name('nelayan.pesanan')
+    ->middleware('nelayan');
+    Route::get('/mulaisewa/{kode_sewa}', [PenyewaanController::class, 'mulaisewa'])->name('penyewaan.mulaisewa');
+    Route::get('/profile', [NelayanController::class, 'profile'])->name('nelayan.profile');
+    Route::post('/update-profile-photo-nelayan',[NelayanController::class, 'uploadpotouser'] )->name('update.profile.photo.nelayan');
+    Route::delete('/delete-profile-photo-nelayan', [NelayanController::class, 'deletepotouser'])->name('delete.profile.photo.nelayan');
+    Route::post('/nelayan-profile', [NelayanController::class, 'update'])->name('nelayan.profile.update');
+    Route::get('/detailpesanan', [PenyewaanController::class, 'detailpesanan'])->name('nelayan.detailpesanan');
+    Route::get('/nelayan-barangkembali/{kode_sewa}/{jamkembali}/{jumlah}', [NelayanController::class, 'barangkembali'])->name('nelayan.barangkembali');
+    Route::get('/history-pesanan', [NelayanController::class, 'historypesanan'])->name('nelayan.historypesanan'); 
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 });

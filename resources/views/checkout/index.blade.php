@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +28,7 @@
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <style>
     body {
@@ -64,6 +39,28 @@
       background-attachment: fixed; /* Menetapkan background agar tetap pada posisinya */
    }
    </style>
+
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px; /* Tambahkan padding untuk memberi jarak antar kartu */
+    }
+
+    .card {
+        width: 18rem;
+        box-sizing: border-box;
+        margin-bottom: 20px; /* Jarak antar kartu */
+    }
+
+    .card img {
+        height: 200px; /* Sesuaikan tinggi yang diinginkan */
+        object-fit: cover;
+        width: 100%;
+    }
+</style>
+
 </head>
 
 <body style="background-image: url('img/bg.svg')">
@@ -76,8 +73,8 @@
     <!-- Spinner End -->
 
 
-     <!-- Navbar Start -->
-     <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
         <a href="{{route('dashboard')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
           <img src="{{asset('img/logo (1).svg')}}" alt="logo" style="width:70%; margin-left:-3%">
         </a>
@@ -86,9 +83,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
-                <a href="{{route('dashboard')}}" class="nav-item nav-link">Dashboard</a>
+                <a href="{{route('dashboard')}}" class="nav-item nav-link ">Dashboard</a>
                 <a href="{{route('userabout')}}" class="nav-item nav-link">About</a>
-                <a href="{{route('userproduk')}}" class="nav-item nav-link">Produk</a>
+                <a href="{{route('userproduk')}}" class="nav-item nav-link active">Produk</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
@@ -107,7 +104,7 @@
                     </svg>
                     <span class="badge badge-pill badge-danger"
                         style="color: red; margin-left:-20%;">{{ $jumlahTabel }}</span>
-                </a>                     
+                </a>                
             </div>
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <div class="nav-item dropdown">
@@ -145,95 +142,100 @@
     </nav>
     <!-- Navbar End -->
 
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    @if(Auth::user()->foto)
-                    <img class="rounded-circle mt-5 border rounded-circle p-2" width="150px" src="{{asset('storage/fotouser/'.Auth::user()->foto)}}">
-                    @else
-                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    @endif
-                    <div class="container-fluid p-0 ">
-
-                    <div class="dropdown btn btn-link mr-2">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                              </svg>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                         <form action="{{route('update.profile.photo')}}" enctype="multipart/form-data" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <input type="file" id="foto" name="foto">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                         </form>
-                        </div>
-                      </div>
-    
-                    <!-- Tempat Sampah untuk Menghapus Foto -->
-                    <a href="#" class="btn btn-link mr-2" id="deletePhotoBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                          </svg>
-                    </a>
+     <!-- About Start -->
+     <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                @if(isset($barang))
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="{{ asset('storage/fotobarang/' . $barang->foto_barang) }}" alt="{{ $barang->nama_barang }}" style="object-fit: cover;">
                     </div>
-                    @if(session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                
-                @if(session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-                    <span class="text-black-50">{{Auth::user()->name}}</span>
-                    <span class="text-black-50">{{Auth::user()->email}}</span>
-                    <span> </span>
                 </div>
-            </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
-                    </div>
-                    <div class="row mt-3">
-                    <form action="{{ route('profile.update') }}" method="post">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                   <h6 class="section-title bg-white text-start pe-3" style="color: #097ABA">Checkout</h6>
+                     <h1 class="mb-4" style="color: black">Checkout</h1>
+                    <h6 class="mb-4" style="color: black">{{ $barang->nama_barang }}</h6>
+                   
+
+                      <form action="{{route('storecheckout')}}" method="POST">
                         @csrf
+                        <div class="mb-3">
+                            <label for="kode_barang" class="form-label" style="color: black">Kode Barang</label>
+                            <input type="text"  class="form-control" name="kode_barang" id="kode_barang" value="{{ $barang->kode_barang }}" readonly>
+                          </div>
+                        <div class="mb-3">
+                            <label for="nama_barang" class="form-label" style="color: black">Nama Barang</label>
+                            <input type="text"  class="form-control" name="nama_barang" id="nama_barang" value="{{ $barang->nama_barang }}" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="kondisi" class="form-label" style="color: black">Kondisi Barang</label>
+                            <input type="text"  class="form-control" name="kondisi" id="kondisi" value="{{ $barang->kondisi }}" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="nama" class="form-label" style="color: black">Pemilik</label>
+                            <input type="text"  class="form-control" name="nama" id="nama" value="{{ $barang->nelayan->nama}}" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="lokasi" class="form-label" style="color: black">Lokasi Penyewaan</label>
+                            <input type="text"  class="form-control" name="lokasi" id="lokasi" value="{{ $barang->nelayan->alamat}}" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="nomer_telepon" class="form-label" style="color: black">Nomor Telepon Pemilik</label>
+                            <input type="text"  class="form-control" name="nomer_telepon" id="nomer_telepon" value="{{ $barang->nelayan->nomer_telepon}}" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="harga" class="form-label" style="color: black">Harga Sewa</label>
+                            <input type="text"  class="form-control" name="harga" id="harga" value="Rp. {{ $barang->harga}} /Hari" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="jumlah" class="form-label" style="color: black">Jumlah Barang Tersedia</label>
+                            <input type="text"  class="form-control" name="jumlah" id="jumlah" value="{{ $barang->jumlah}}" readonly>
+                          </div>
+                          <div class="mb-3">
+                            <label for="jumlahsewa" class="form-label" style="color: black">Masukan Jumlah Barang yang ingin kamu sewa</label>
+                            <input type="number"  class="form-control" name="jumlahsewa" id="jumlahsewa">
+                          </div>
+                          <div class="mb-3">
+                            <label for="waktu" class="form-label" style="color: black">Berapa Jam Kamu Akan Menyewa Barang Ini</label>
+                            <input type="number"  class="form-control" name="waktu" id="waktu">
+                          </div>
+                          <button type="submit" class="btn btn-danger py-3 px-5 mt-2" href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                          </svg>  Sewa Sekarang</button>
+                          @if(session('st'))
+                          <div class="alert alert-danger">
+                              {{ session('st') }}
+                          </div>
+                      @endif
 
-                        <!-- Kolom Nama -->
-                        <div class="mb-3" style="color: black">
-                            <label for="name" class="form-label">Nama :</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}" required>
-                        </div>
-
-                        <div class="mb-3" style="color: black">
-                            <label for="name" class="form-label">alamat :</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" value="{{ Auth::user()->alamat }}" required>
-                        </div>
-
-                        <div class="mb-3" style="color: black">
-                            <label for="nomer_telepon" class="form-label">Nomer Telepon :</label>
-                            <input type="tel" class="form-control" id="nomer_telepon" name="nomer_telepon" value="{{ Auth::user()->nomer_telepon }}" pattern="[0-9]{10,14}" title="Masukkan nomor telepon yang valid (minimal 10 digit, maksimal 14 digit)" required>
-                        </div>                            
-
-                        <!-- Tombol Submit -->
-                        <button type="submit" class="btn btn-primary">Update Profil</button>
-                    </form>
-                    </div>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
+                      @if(session('berhasil'))
+                          <div class="alert alert-primary">
+                              {{ session('berhasil') }}
+                          </div>
+                      @endif
+                  
+                      @if($errors->any())
+                          <div class="alert alert-danger">
+                              <ul>
+                                  @foreach($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                  @endforeach
+                              </ul>
+                          </div>
+                      @endif
+                      </form>
                 </div>
+                @else
+                <p style="color: black">Barang tidak ditemukan</p>
+                @endif
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-</x-app-layout>
-=======
+    <br>
+    <br>
+    <!-- About End -->
+
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
@@ -293,6 +295,8 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Add this to your HTML file -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('lib/wow/wow.min.js')}}"></script>
     <script src="{{asset('lib/easing/easing.min.js')}}"></script>
     <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
@@ -300,35 +304,5 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('js/main.js')}}"></script>
-
-    <script>
-        document.getElementById('deletePhotoBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah aksi bawaan dari tautan
-            if (confirm('Anda yakin ingin menghapus foto profil?')) {
-                // Mengirim permintaan DELETE menggunakan Fetch API
-                fetch('{{ route('delete.profile.photo') }}', {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle respons
-                    console.log(data);
-                })
-                .catch(error => {
-                    // Handle error
-                    console.error('Error:', error);
-                });
-            }
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
-
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055

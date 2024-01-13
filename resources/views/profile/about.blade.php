@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{asset('img/favicon.ico')}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,14 +21,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{asset('lib/animate/animate.min.css" rel="stylesheet')}}">
+    <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <style>
     body {
       background-size: cover;
@@ -50,38 +50,74 @@
     <!-- Spinner End -->
 
 
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
-        <a href="{{route('index')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-          <img src="img/logo (1).svg" alt="logo" style="width:70%; margin-left:-3%">
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-3 p-4 p-lg-0">
-                <a href="{{route('index')}}" class="nav-item nav-link">Dashboard</a>
-                <a href="{{route('about')}}" class="nav-item nav-link active">About</a>
-                <a href="{{route('produk')}}" class="nav-item nav-link">Produk</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
-                        <a href="testimonial.html" class="dropdown-item">Blog</a>
-                    </div>
+   <!-- Navbar Start -->
+   <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
+    <a href="{{route('dashboard')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <img src="{{asset('img/logo (1).svg')}}" alt="logo" style="width:70%; margin-left:-3%">
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-3 p-4 p-lg-0">
+            <a href="{{route('dashboard')}}" class="nav-item nav-link">Dashboard</a>
+            <a href="{{route('userabout')}}" class="nav-item nav-link active">About</a>
+            <a href="{{route('userproduk')}}" class="nav-item nav-link">Produk</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="{{route('usernews')}}" class="dropdown-item">Berita Tentang Kelautan</a>
+                    <a href="testimonial.html" class="dropdown-item">Blog</a>
                 </div>
             </div>
-            <div class="klik" style="margin-left: 10%">
-            <a href="{{route('login')}}">
-              <button type="button" class="btn btn-outline-dark" style=" width:10rem">Login</button>
-            </a>
-            <a href="{{route('register')}}">
-              <button type="button" class="btn btn-dark" style="width:10rem">Register</button>
-            </a>
-          </div>
+            <a href="{{route('keranjang')}}" class="nav-item nav-link">
+                @php
+                    $jumlahTabel = \App\Models\Penyewaan::where('user_id', Auth::user()->id)->count();
+                @endphp
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-cart4" viewBox="0 0 16 16">
+                    <path
+                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
+                </svg>
+                <span class="badge badge-pill badge-danger"
+                    style="color: red; margin-left:-20%;">{{ $jumlahTabel }}</span>
+            </a>                 
         </div>
-    </nav>
-    <!-- Navbar End -->
+        <div class="navbar-nav ms-3 p-4 p-lg-0">
+            <div class="nav-item dropdown">
+                @if(Auth::user()->foto)
+                    <a href="#" style="margin-left: 20%" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <img class="border rounded-circle p-2" src="{{asset('storage/fotouser/'.Auth::user()->foto)}}" style="width: 40px; height: 40px;">
+                        {{Auth::user()->name}}
+                    </a>
+                @else
+                    <a href="#" style="margin-left: 20%" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg>
+                        {{Auth::user()->name}}
+                    </a>
+                @endif
+                <div class="dropdown-menu fade-down m-0" style="position: absolute; left: 50%;">
+                    <a href="{{route('profile.edit')}}" class="dropdown-item">Profile</a>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item">
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button class="btn-danger" :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                            </button>
+                        </form>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</nav>
+<!-- Navbar End -->
 
     <!-- Header Start -->
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
@@ -92,10 +128,6 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
-<<<<<<< HEAD
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
-=======
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <li class="breadcrumb-item text-white active" aria-current="page">About</li>
                         </ol>
                     </nav>
@@ -110,58 +142,27 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-<<<<<<< HEAD
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <img src="{{asset('img/lokasi.png')}}" alt="">
-                            <h5 class="mb-3">Lokasi Ikan</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item text-center pt-3">
-=======
-                    <a href="{{route('comingsonn')}}">
+                    <a href="{{asset('usercomingsoon')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                             <img src="{{asset('img/lokasi.png')}}" alt="">
-                            
                             <h5 class="mb-3">Lokasi Ikan</h5>
                         </div>
                     </div>
                 </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <a href="{{route('produk')}}">
+                    <a href="{{route('userproduk')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                         <div class="p-4">
                           <img src="{{asset('img/swaa alat.png')}}" alt="">
                             <h5 class="mb-3">Sewa Alat</h5>
                         </div>
                     </div>
-<<<<<<< HEAD
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                          <img src="{{asset('img/iwak_wader-removebg-preview 1.png')}}" alt="" style="width: 93%">
-                            <h5 class="mb-3">Pasar Ikan</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                          <img src="{{asset('img/🦆 icon _history_.png')}}" alt="">
-                            <h5 class="mb-3">History</h5>
-                        </div>
-                    </div>
-=======
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <a href="{{route('comingsonn')}}">
+                    <a href="{{asset('usercomingsoon')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/iwak_wader-removebg-preview 1.png')}}" alt="" style="width: 99%">
@@ -171,7 +172,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <a href="{{route('comingsonn')}}">
+                    <a href="{{asset('usercomingsoon')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/🦆 icon _history_.png')}}" alt="" style="width: 99%">
@@ -179,7 +180,6 @@
                         </div>
                     </div>
                     </a>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                 </div>
             </div>
         </div>
@@ -218,11 +218,7 @@
                             <p class="mb-0" style="color: black"><i class="fa fa-arrow-right text-primary me-2"></i>Pemesanan Online yang Mudah</p>
                         </div>
                     </div>
-<<<<<<< HEAD
-                    <a class="btn btn-warning py-3 px-5 mt-2" href="">Read More</a>
-=======
-                    <a class="btn btn-warning py-3 px-5 mt-2" href="{{route('about')}}">Selengkapnya</a>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
+                    <a class="btn btn-warning py-3 px-5 mt-2" href="{{route('userabout')}}">Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -244,15 +240,9 @@
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                             <div class="bg-light d-flex justify-content-center pt-2 px-1">
-<<<<<<< HEAD
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-=======
                                 <a class="btn btn-sm-square btn-primary mx-1" href="https://github.com/pajargaul"><i class="bi bi-github"></i></a>
                                 <a class="btn btn-sm-square btn-primary mx-1" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=fajarrosyidi80@gmail.com"><i class="bi bi-google"></i></a>
                                 <a class="btn btn-sm-square btn-primary mx-1" href="https://www.instagram.com/jarwis_24/"><i class="fab fa-instagram"></i></a>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             </div>
                         </div>
                         <div class="text-center p-4">
@@ -264,19 +254,6 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-<<<<<<< HEAD
-                            <img class="img-fluid" src="img/" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Rama Sans Anjai</h5>
-=======
                             <img class="img-fluid" src="img/WhatsApp Image 2023-12-26 at 11.25.58_ce004b7d.jpg" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
@@ -288,7 +265,6 @@
                         </div>
                         <div class="text-center p-4">
                             <h5 class="mb-0">Mohamad Rizki Ramadhan</h5>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <small style="color: black">Mobile Developer</small>
                         </div>
                     </div>
@@ -296,19 +272,6 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-<<<<<<< HEAD
-                            <img class="img-fluid" src="img/" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Zidan Dapur Roti</h5>
-=======
                             <img class="img-fluid" src="img/WhatsApp Image 2023-12-26 at 11.29.20_2332fe6a.jpg" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
@@ -320,7 +283,6 @@
                         </div>
                         <div class="text-center p-4">
                             <h5 class="mb-0">Mohammad Zidan Caesar Pratama</h5>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <small style="color: black">UI/UX Designer</small>
                         </div>
                     </div>
@@ -328,19 +290,6 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
-<<<<<<< HEAD
-                            <img class="img-fluid" src="img/" alt="">
-                        </div>
-                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-0">Rois Slepet</h5>
-=======
                             <img class="img-fluid" src="img/WhatsApp Image 2023-12-26 at 11.21.41_39fb63ca.jpg" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
@@ -352,7 +301,6 @@
                         </div>
                         <div class="text-center p-4">
                             <h5 class="mb-0">Muhamad Rois</h5>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <small style="color: black">Database Engginer</small>
                         </div>
                     </div>
@@ -420,12 +368,12 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="{{asset('lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset('lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>

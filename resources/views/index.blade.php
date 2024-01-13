@@ -99,8 +99,13 @@
                                   meningkatkan hasil tangkapan dan memaksimalkan waktu di laut. Bagi nelayan
                                   dengan perahu sedang-kecil yang tidak memiliki alat pendeteksi ikan
                                   FishApp adalah jawaban atas kebutuhan Anda.</p>
+<<<<<<< HEAD
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
                                 <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+=======
+                                  <a href="{{route('about')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Selengkapnya</a>
+                                  <a href="{{route('register')}}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Daftar Sekarang</a>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             </div>
                         </div>
                     </div>
@@ -117,8 +122,13 @@
                                 <p class="fs-5 text-white mb-4 pb-2">Memantau Cuaca dan Suhu Air Real-Time: Kami menyediakan informasi
                                   cuaca dan suhu air yang akurat dan up-to-date, sehingga Anda bisa merencanakan
                                   penangkapan ikan Anda dengan lebih baik.</p>
+<<<<<<< HEAD
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
                                 <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+=======
+                                  <a href="{{route('about')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Selengkapnya</a>
+                                  <a href="{{route('register')}}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Daftar Sekarang</a>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             </div>
                         </div>
                     </div>
@@ -134,8 +144,13 @@
                               <h1 class="display-3 text-white animated slideInDown">Maksimalkan Hasil Tangkapan Ikan di Laut</h1>
                               <p class="fs-5 text-white mb-4 pb-2">FishApp membantu Anda meningkatkan efisiensi penangkapan ikan Anda,
                                 sehingga Anda bisa membawa pulang hasil yang lebih besar..</p>
+<<<<<<< HEAD
                               <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Read More</a>
                               <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+=======
+                              <a href="{{route('about')}}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" style="background-color: #097ABA">Selengkapnya</a>
+                              <a href="{{route('register')}}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Daftar Sekarang</a>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                           </div>
                       </div>
                   </div>
@@ -151,6 +166,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+<<<<<<< HEAD
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                             <img src="{{asset('img/lokasi.png')}}" alt="">
@@ -159,28 +175,60 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+=======
+                    <a href="{{route('comingsonn')}}">
+                    <div class="service-item text-center pt-3" style="border-radius:20px">
+                        <div class="p-4">
+                            <img src="{{asset('img/lokasi.png')}}" alt="">
+                            
+                            <h5 class="mb-3">Lokasi Ikan</h5>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="{{route('produk')}}">
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/swaa alat.png')}}" alt="">
                             <h5 class="mb-3">Sewa Alat</h5>
                         </div>
                     </div>
+<<<<<<< HEAD
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+=======
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <a href="{{route('comingsonn')}}">
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/iwak_wader-removebg-preview 1.png')}}" alt="" style="width: 99%">
                             <h5 class="mb-3">Pasar Ikan</h5>
                         </div>
                     </div>
+<<<<<<< HEAD
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+=======
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <a href="{{route('comingsonn')}}">
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
                           <img src="{{asset('img/🦆 icon _history_.png')}}" alt="" style="width: 99%">
                             <h5 class="mb-3">History</h5>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+                    </a>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                 </div>
             </div>
         </div>
@@ -219,7 +267,11 @@
                             <p class="mb-0" style="color: black"><i class="fa fa-arrow-right text-primary me-2"></i>Pemesanan Online yang Mudah</p>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <a class="btn btn-warning py-3 px-5 mt-2" href="">Read More</a>
+=======
+                    <a class="btn btn-warning py-3 px-5 mt-2" href="{{route('about')}}">Selengkapnya</a>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                 </div>
             </div>
         </div>
@@ -295,9 +347,15 @@
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                             <div class="bg-light d-flex justify-content-center pt-2 px-1">
+<<<<<<< HEAD
                                 <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+=======
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://github.com/pajargaul"><i class="bi bi-github"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=fajarrosyidi80@gmail.com"><i class="bi bi-google"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://www.instagram.com/jarwis_24/"><i class="fab fa-instagram"></i></a>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             </div>
                         </div>
                         <div class="text-center p-4">
@@ -309,6 +367,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
+<<<<<<< HEAD
                             <img class="img-fluid" src="img/" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
@@ -320,6 +379,19 @@
                         </div>
                         <div class="text-center p-4">
                             <h5 class="mb-0">Rama Sans Anjai</h5>
+=======
+                            <img class="img-fluid" src="img/WhatsApp Image 2023-12-26 at 11.25.58_ce004b7d.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://github.com/anzaayyy"><i class="bi bi-github"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rizkidwi1140@gmail.com"><i class="bi bi-google"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://www.instagram.com/heirammm_?igsh=MTNiYzNiMzkwZA=="><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Mohamad Rizki Ramadhan</h5>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <small style="color: black">Mobile Developer</small>
                         </div>
                     </div>
@@ -327,6 +399,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
+<<<<<<< HEAD
                             <img class="img-fluid" src="img/" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
@@ -338,6 +411,19 @@
                         </div>
                         <div class="text-center p-4">
                             <h5 class="mb-0">Zidan Dapur Roti</h5>
+=======
+                            <img class="img-fluid" src="img/WhatsApp Image 2023-12-26 at 11.29.20_2332fe6a.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://github.com/PratamaZidan1"><i class="bi bi-github"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=argentu10@gmail.com"><i class="bi bi-google"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://www.instagram.com/pratamaziidan/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Mohammad Zidan Caesar Pratama</h5>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <small style="color: black">UI/UX Designer</small>
                         </div>
                     </div>
@@ -345,6 +431,7 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item bg-light">
                         <div class="overflow-hidden">
+<<<<<<< HEAD
                             <img class="img-fluid" src="img/" alt="">
                         </div>
                         <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
@@ -356,6 +443,19 @@
                         </div>
                         <div class="text-center p-4">
                             <h5 class="mb-0">Rois Slepet</h5>
+=======
+                            <img class="img-fluid" src="img/WhatsApp Image 2023-12-26 at 11.21.41_39fb63ca.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://github.com/MuhamadRois07"><i class="bi bi-github"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=muhamadrois0703@gmail.com"><i class="bi bi-google"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href="https://www.instagram.com/utit.666?utm_source=ig_web_button_share_sheet&igsh=OGQ5ZDc2ODk2ZA=="><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Muhamad Rois</h5>
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <small style="color: black">Database Engginer</small>
                         </div>
                     </div>

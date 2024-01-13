@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {{-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +36,8 @@
 </body>
 </html> --}}
 
+=======
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 <<!DOCTYPE html>
 <html lang="en">
 <head>

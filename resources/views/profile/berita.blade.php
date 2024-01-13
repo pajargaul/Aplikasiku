@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,6 +37,28 @@
       color: white;
       background-attachment: fixed; /* Menetapkan background agar tetap pada posisinya */
    }
+
+   .container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .news-box {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .news-content {
+            font-size: 16px;
+        }
    </style>
 </head>
 
@@ -90,7 +86,7 @@
                 <a href="{{route('userabout')}}" class="nav-item nav-link">About</a>
                 <a href="{{route('userproduk')}}" class="nav-item nav-link">Produk</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
+                    <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="{{route('usernews')}}" class="dropdown-item">Berita Tentang Kelautan</a>
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
@@ -107,7 +103,7 @@
                     </svg>
                     <span class="badge badge-pill badge-danger"
                         style="color: red; margin-left:-20%;">{{ $jumlahTabel }}</span>
-                </a>                     
+                </a>                
             </div>
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <div class="nav-item dropdown">
@@ -145,95 +141,43 @@
     </nav>
     <!-- Navbar End -->
 
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    @if(Auth::user()->foto)
-                    <img class="rounded-circle mt-5 border rounded-circle p-2" width="150px" src="{{asset('storage/fotouser/'.Auth::user()->foto)}}">
-                    @else
-                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    @endif
-                    <div class="container-fluid p-0 ">
-
-                    <div class="dropdown btn btn-link mr-2">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                              </svg>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                         <form action="{{route('update.profile.photo')}}" enctype="multipart/form-data" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <input type="file" id="foto" name="foto">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                         </form>
-                        </div>
-                      </div>
-    
-                    <!-- Tempat Sampah untuk Menghapus Foto -->
-                    <a href="#" class="btn btn-link mr-2" id="deletePhotoBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                          </svg>
-                    </a>
-                    </div>
-                    @if(session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                
-                @if(session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-                    <span class="text-black-50">{{Auth::user()->name}}</span>
-                    <span class="text-black-50">{{Auth::user()->email}}</span>
-                    <span> </span>
-                </div>
-            </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
-                    </div>
-                    <div class="row mt-3">
-                    <form action="{{ route('profile.update') }}" method="post">
-                        @csrf
-
-                        <!-- Kolom Nama -->
-                        <div class="mb-3" style="color: black">
-                            <label for="name" class="form-label">Nama :</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}" required>
-                        </div>
-
-                        <div class="mb-3" style="color: black">
-                            <label for="name" class="form-label">alamat :</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" value="{{ Auth::user()->alamat }}" required>
-                        </div>
-
-                        <div class="mb-3" style="color: black">
-                            <label for="nomer_telepon" class="form-label">Nomer Telepon :</label>
-                            <input type="tel" class="form-control" id="nomer_telepon" name="nomer_telepon" value="{{ Auth::user()->nomer_telepon }}" pattern="[0-9]{10,14}" title="Masukkan nomor telepon yang valid (minimal 10 digit, maksimal 14 digit)" required>
-                        </div>                            
-
-                        <!-- Tombol Submit -->
-                        <button type="submit" class="btn btn-primary">Update Profil</button>
-                    </form>
-                    </div>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Berita</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Berita</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-</x-app-layout>
-=======
+    <!-- Header End -->
+    <div class="container">
+        <ul class="news-list">
+            @foreach ($articles['articles'] as $article)
+                <li>
+                    <div class="news-box wow fadeInUp" data-wow-delay="0.1s">
+                        <h2>{{ $article['title'] }}</h2>
+                        <p style="color: black">{{ $article['description'] }}</p>
+                        <p style="color: black">Author: {{ $article['author'] }}</p>
+                        <p style="color: black">Published At: {{ $article['publishedAt'] }}</p>
+                        @if ($article['urlToImage'] != null)
+                            <img src="{{ $article['urlToImage'] }}" alt="Image">
+                        @endif
+                        <p style="color: black">{{ $article['content'] }}</p>
+                        <a href="{{ $article['url'] }}" target="_blank">Read More</a>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
@@ -300,35 +244,5 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('js/main.js')}}"></script>
-
-    <script>
-        document.getElementById('deletePhotoBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah aksi bawaan dari tautan
-            if (confirm('Anda yakin ingin menghapus foto profil?')) {
-                // Mengirim permintaan DELETE menggunakan Fetch API
-                fetch('{{ route('delete.profile.photo') }}', {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle respons
-                    console.log(data);
-                })
-                .catch(error => {
-                    // Handle error
-                    console.error('Error:', error);
-                });
-            }
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
-
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
