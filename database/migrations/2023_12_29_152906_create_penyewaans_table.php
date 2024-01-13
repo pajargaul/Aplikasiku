@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('jumlah_waktu');
             $table->dateTime('jam_sewa')->nullable();
             $table->dateTime('jam_pengembalian')->nullable();
-            $table->string('foto_sebelum')->nullable();
+            $table->string('status_pengembalian')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->string('kode_barang_id');
             $table->timestamps();

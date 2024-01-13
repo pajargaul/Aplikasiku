@@ -21,6 +21,7 @@ class APIAuthController extends Controller
             'name' => ['required', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email',],
             'password' => ['required'],
+            'confirm_password' => 'required|same:password',
         ]);
 
         if ($validator->fails()) {

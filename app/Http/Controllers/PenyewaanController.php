@@ -18,56 +18,6 @@ class PenyewaanController extends Controller
         return view('checkout.index', ['barang' => $barang]);
     }
 
-    // public function storesewa(Request $request){
-    //     $request->validate([
-    //         'jumlahsewa' => 'required|integer|min:1',
-    //         'waktu' => 'required|integer|min:1',
-    //         'kode_barang' => 'required|exists:tb_barangsewas,kode_barang',
-    //     ], [
-    //         'kode_barang.exists' => 'Kode barang tidak valid.',
-    //     ]);
-    
-    //     // Mengecek apakah jumlah barang yang tersedia cukup
-    //     $barang = Tb_Barangsewa::where('kode_barang', $request->input('kode_barang'))->first();
-    //     if (!$barang || $barang->jumlah < $request->input('jumlahsewa')) {
-    //         return redirect()->back()->with('st', 'Jumlah barang tidak mencukupi untuk disewa.');
-    //     }
-    
-    //     // Kode lain tetap sama
-    //     $maxKodeSewa = Penyewaan::max('kode_sewa');
-    //     $nextNumber = intval(substr($maxKodeSewa, 1)) + 1;
-    //     $formattedNumber = str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
-    //     $newKodeSewa = 'S' . $formattedNumber;
-
-    //     $current = Carbon::now();
-    //     $jamSewa = $current;
-
-    //     $waktuSewa = $request->input('waktu');
-    //     $detik = 3600;
-    //     $jumlahdetik =  $waktuSewa * $detik;
-    
-    //     $barangSewa = Penyewaan::create([
-    //         'kode_sewa' => $newKodeSewa,
-    //         'jumlah_sewa' => $request->input('jumlahsewa'),
-    //         'jam_sewa' => $jamSewa,
-    //         'jam_pengembalian' =>  Carbon::now()->addSeconds($jumlahdetik),
-    //         'user_id' => Auth::user()->id,
-    //         'kode_barang_id' => $request->input('kode_barang'),
-    //     ]);
-
-    //     DB::table('tb_barangsewas')
-    //     ->where('kode_barang', $barang->kode_barang)
-    //     ->update([
-    //         'jumlah' => $barang->jumlah - $request->input('jumlahsewa'),
-    //     ]);
-    
-    //     if ($barangSewa) {
-    //         return redirect()->back()->with('st', 'Kamu Berhasil Menyewa Barang ini');
-    //     } else {
-    //         return redirect()->back()->with('st', 'Gagal menyimpan data barang sewa. Silakan coba lagi.');
-    //     }
-    // }
-
     public function storesewa(Request $request){
         $request->validate([
             'jumlahsewa' => 'required|integer|min:1',
@@ -110,29 +60,24 @@ class PenyewaanController extends Controller
     }
 
     public function mulaisewa($kode_sewa){
-        try {
-            // Temukan penyewaan berdasarkan ID
-            $penyewaan = Penyewaan::findOrFail($kode_sewa);
-    
-            // Hitung waktu sewa
-            $waktuSewa = $penyewaan->jumlah_waktu;
-            $jumlahdetik = $waktuSewa * 3600;
-    
-            // Set waktu sewa dan waktu pengembalian
-            $jamSewa = Carbon::now();
-            $jamPengembalian = $jamSewa->copy()->addSeconds($jumlahdetik);
+        $penyewaan = DB::table('tb_penyewaans')
+        ->select('*')
+        ->where('kode_sewa', $kode_sewa)
+        ->first();
 
-            DB::table('tb_penyewaans')
+        $waktuSewa = $penyewaan->jumlah_waktu;
+        $jumlahdetik = $waktuSewa * 3600;
+        $jamSewa = Carbon::now();
+        $jamPengembalian = $jamSewa->copy()->addSeconds($jumlahdetik);
+
+        DB::table('tb_penyewaans')
                 ->where('kode_sewa', $kode_sewa)
                 ->update([
                     'jam_sewa' => $jamSewa,
                     'jam_pengembalian' => $jamPengembalian,
                 ]);
-    
-            return redirect()->back()->with('success', 'Barang berhasil disewakan.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menyewakan barang. ' . $e->getMessage());
-        }
+
+        return redirect()->back()->with('st', 'Barang dengan kode sewa ' .$kode_sewa . ' berhasil disewakan. silahkan cek pada halaman detail pesanan');
     }
 
     public function keranjang()
@@ -148,5 +93,12 @@ class PenyewaanController extends Controller
         $whatsappNumber = '62' . ltrim($nomorTelepon, '0');
         $whatsappUrl = "https://wa.me/{$whatsappNumber}";
         return redirect($whatsappUrl);
+    }
+
+    public function detailpesanan(){
+        $barangSewa = Tb_Barangsewa::where('nelayan_id', Auth::guard('nelayan')->user()->id)->get();
+        $kodeBarangArray = $barangSewa->pluck('kode_barang')->toArray();
+        $pesanan = Penyewaan::whereIn('kode_barang_id', $kodeBarangArray)->get();
+        return view('nelayan.detailpesanan',compact('pesanan'));
     }
 }

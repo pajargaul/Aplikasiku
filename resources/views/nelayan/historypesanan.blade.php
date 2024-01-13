@@ -128,44 +128,37 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Pesanan</h1>
+                        <h1 class="mt-4">History Pesanan</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">daftar Pesanan</li>
+                            <li class="breadcrumb-item active">Barang yang Telah Selesai disewa</li>
                         </ol>
-
-                        @if ($pesanan->isEmpty())
-                        <p>Tidak ada pesanan saat ini.</p>
-                    @else
-                        <div class="container card-container">
-                            <div class="card" style="width: 18rem;">
-                                @foreach ($pesanan as $item)
-                                    @if ($item->jam_sewa === null && $item->jam_pengembalian === null)
-                                        <img class="card-img-top" src="{{ asset('storage/fotobarang/' . $item->barangSewa->foto_barang) }}" class="card-img-top" alt="foto">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $item->barangSewa->nama_barang}}</h5>
-                                            <h6 class="card-title" style="color: red">Rp {{ number_format($item->barangSewa->harga, 0, ',', '.') }},-</h6>
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Kode Barang : {{ $item->kode_barang_id }}</li>
-                                            <li class="list-group-item">Kode Sewa : {{ $item->kode_sewa }}</li>
-                                            <li class="list-group-item">Nama Penyewa : {{ $item->user->name}}</li>
-                                            <li class="list-group-item">Jumlah yang akan disewa : {{ $item->jumlah_sewa}}</li>
-                                            <li class="list-group-item">Waktu : {{ $item->jumlah_waktu}} Jam</li>
-                                        </ul>
-                                        <div class="card-body">
-                                            <a href="{{ route('penyewaan.mulaisewa', ['kode_sewa' => $item->kode_sewa]) }}" class="btn btn-danger">Sewakan Sekarang</a>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            </div>                            
-                        </div>
-                        @endif
-
                         @if(session('st'))
                         <div class="alert alert-success">
                             {{ session('st') }}
                         </div>
                     @endif
+
+                    @if ($pesanan->isEmpty())
+                    <p>Tidak ada pesanan saat ini.</p>
+                    @else
+                    @foreach ($pesanan as $item)
+                    <div class="card mb-4">
+                            <div class="card-header">
+                                detail
+                            </div>
+                            <div class="card-body">
+                                <img class="card-img-top img-thumbnail" src="{{ asset('storage/fotobarang/' . $item->ke->barangSewa->foto_barang) }}" alt="Card image cap" style="max-width: 200px; margin: auto;">
+                               <h5 class="card-title">{{ $item->ke->barangSewa->nama_barang}}</h5>
+                               <h6 class="card-title" style="color: red">nama pengunjung : {{ $item->ke->user->name}}</h6>
+                               <h6 class="card-title" style="color: red">Alamat : {{ $item->ke->user->alamat}}</h6>
+                               <h6 class="card-title" style="color: red">nomor telepon : {{ $item->ke->user->nomer_telepon}}</h6>
+                             <p class="card-text">barang ini disewa pada hari {{ \Carbon\Carbon::parse($item->ke->jam_sewa)->isoFormat('dddd') }}, tanggal {{ \Carbon\Carbon::parse($item->ke->jam_sewa)->format('d/m/Y') }} jam {{ \Carbon\Carbon::parse($item->ke->jam_sewa)->format('H:i') }}</p>
+                            <p class="card-text">dan telah Dikembalikan oleh pengunjung pada hari {{ \Carbon\Carbon::parse($item->jam_pengembalian)->isoFormat('dddd') }}, tanggal {{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('d/m/Y') }} jam {{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('H:i') }}</p>
+                            <h4 class="card-title">Denda(dikenakan denda biaya rp.500 /menit keterlambatan) : Rp {{ number_format($item->denda, 0, ',', '.') }},-</h4>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
                     </div>
                 </main>
                 <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
@@ -223,7 +216,6 @@
         <script src="{{ asset('js/chart-area-demo.js') }}"></script>
         <script src="{{ asset('js/chart-bar-demo.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
-        
+        <script src="{{ asset('js/datatables-simple-demo.js') }}"></script> 
     </body>
 </html>

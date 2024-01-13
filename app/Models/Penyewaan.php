@@ -16,7 +16,7 @@ class Penyewaan extends Model
         'jumlah_waktu',
         'jam_sewa',
         'jam_pengembalian',
-        'foto_sebelum',
+        'status_pengembalian',
         'user_id',
         'kode_barang_id',
     ];

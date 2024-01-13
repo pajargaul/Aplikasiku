@@ -32,6 +32,17 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'email.required' => 'Email wajib diisi.',
+            'email.string' => 'Format email tidak valid.',
+            'email.email' => 'Format email tidak valid.',
+            'password.required' => 'Kata sandi wajib diisi.',
+            'password.string' => 'Format kata sandi tidak valid.',
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *

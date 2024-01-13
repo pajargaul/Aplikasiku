@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('tb_pengembalians', function (Blueprint $table) {
             $table->string('kode_kembali')->primary();
-            $table->string('kondisi_barang');
             $table->dateTime('jam_pengembalian');
-            $table->string('foto_sesudah');
-            $table->decimal('denda', 10, 2);
+            $table->decimal('denda', 10, 2)->nullable();
             $table->string('kode_sewa_id');
             $table->timestamps();
             $table->foreign('kode_sewa_id')->references('kode_sewa')->on('tb_penyewaans');

@@ -128,44 +128,77 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Pesanan</h1>
+                        <h1 class="mt-4">detail barang yang sedang disewa</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">daftar Pesanan</li>
+                            <li class="breadcrumb-item active">detail barang yang sedang di sewa</li>
                         </ol>
-
-                        @if ($pesanan->isEmpty())
-                        <p>Tidak ada pesanan saat ini.</p>
-                    @else
-                        <div class="container card-container">
-                            <div class="card" style="width: 18rem;">
-                                @foreach ($pesanan as $item)
-                                    @if ($item->jam_sewa === null && $item->jam_pengembalian === null)
-                                        <img class="card-img-top" src="{{ asset('storage/fotobarang/' . $item->barangSewa->foto_barang) }}" class="card-img-top" alt="foto">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $item->barangSewa->nama_barang}}</h5>
-                                            <h6 class="card-title" style="color: red">Rp {{ number_format($item->barangSewa->harga, 0, ',', '.') }},-</h6>
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Kode Barang : {{ $item->kode_barang_id }}</li>
-                                            <li class="list-group-item">Kode Sewa : {{ $item->kode_sewa }}</li>
-                                            <li class="list-group-item">Nama Penyewa : {{ $item->user->name}}</li>
-                                            <li class="list-group-item">Jumlah yang akan disewa : {{ $item->jumlah_sewa}}</li>
-                                            <li class="list-group-item">Waktu : {{ $item->jumlah_waktu}} Jam</li>
-                                        </ul>
-                                        <div class="card-body">
-                                            <a href="{{ route('penyewaan.mulaisewa', ['kode_sewa' => $item->kode_sewa]) }}" class="btn btn-danger">Sewakan Sekarang</a>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            </div>                            
-                        </div>
-                        @endif
 
                         @if(session('st'))
                         <div class="alert alert-success">
                             {{ session('st') }}
                         </div>
                     @endif
+
+
+                    @if ($pesanan->isEmpty())
+                    <p>Tidak ada pesanan saat ini.</p>
+                    @else
+                    @foreach ($pesanan as $item)
+                    @if ($item->jam_sewa !== null && $item->jam_pengembalian !== null)
+                    <?php
+                    // $current_time = now();
+                    // $return_time = \Carbon\Carbon::parse($item->jam_pengembalian);
+                ?>
+                @if ($item->status_pengembalian === null)
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                detail
+                            </div>
+                            <div class="card-body">
+                                <img class="card-img-top img-thumbnail" src="{{ asset('storage/fotobarang/' . $item->barangSewa->foto_barang) }}" alt="Card image cap" style="max-width: 200px; margin: auto;">
+                              <h5 class="card-title">{{ $item->barangSewa->nama_barang}}</h5>
+                              <p class="card-text">barang ini disewa pada hari {{ \Carbon\Carbon::parse($item->jam_sewa)->isoFormat('dddd') }}, tanggal {{ \Carbon\Carbon::parse($item->jam_sewa)->format('d/m/Y') }} jam {{ \Carbon\Carbon::parse($item->jam_sewa)->format('H:i') }}</p>
+                              <p class="card-text">dan akan berakhir pada hari {{ \Carbon\Carbon::parse($item->jam_pengembalian)->isoFormat('dddd') }}, tanggal {{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('d/m/Y') }} jam {{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('H:i') }}</p>
+                              <br>
+                              <h5>Waktu yang tersisa :</h5>
+                              <p id="demo{{$item->kode_sewa}}" style="color: red"></p>
+                              <h5>Keterlamabatan :</h5>
+                              <p id="telat{{$item->kode_sewa}}" style="color: red"></p>
+                              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal{{ $item->kode_sewa}}">Selengkapnya</a>
+                              <a href="{{route('nelayan.barangkembali', ['kode_sewa' => $item->kode_sewa, 'jamkembali' => $item->jam_pengembalian, 'jumlah'=>$item->barangSewa->jumlah])}}" class="btn btn-warning">Telah Mengembalikan</a>
+                            </div>
+                        </div>
+                        @endif
+                        @endif
+                        @endforeach
+                        @endif
+
+                    @foreach ($pesanan as $item)
+    <div class="modal fade" id="productModal{{ $item->kode_sewa }}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel" style="color: black">{{ $item->barangSewa->nama_barang}} - Detail Sewa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('storage/fotobarang/' . $item->barangSewa->foto_barang) }}" class="card-img-top" alt="{{ $item->barangSewa->foto_barang }}">
+                    <br>
+                    <h4>Nama Penyewa : {{ $item->user->name }}</h4>
+                    <p style="color: black">Nomor Telepon Penyewa : {{ $item->user->nomer_telepon }}</p>
+                    <p style="color: black">Alamat Penyewa : {{ $item->user->alamat }}</p>
+                    <p style="color: black">Waktu Sewa :  {{ \Carbon\Carbon::parse($item->jam_sewa)->isoFormat('dddd') }}, {{ \Carbon\Carbon::parse($item->jam_sewa)->format('d/m/Y') }} jam {{ \Carbon\Carbon::parse($item->jam_sewa)->format('H:i') }}</p>
+                    <p style="color: black">Waktu Barang Harus Dikembalikan :  {{ \Carbon\Carbon::parse($item->jam_pengembalian)->isoFormat('dddd') }}, {{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('d/m/Y') }} jam {{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('H:i') }}</p>
+                    <p style="color: black">Kode Sewa : {{ $item->kode_sewa }}</p>
+                    <p style="color: black">Kode Barang : {{ $item->barangSewa->kode_barang }}</p>
+                    <p style="color: black">Kondisi : {{ $item->barangSewa->kondisi }}</p>
+                    <p style="color: black">Jumlah Barang yang disewa : {{ $item->jumlah_sewa }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
                     </div>
                 </main>
                 <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
@@ -223,7 +256,53 @@
         <script src="{{ asset('js/chart-area-demo.js') }}"></script>
         <script src="{{ asset('js/chart-bar-demo.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
-        
+        <script src="{{ asset('js/datatables-simple-demo.js') }}"></script> 
     </body>
+
+    @foreach ($pesanan as $index => $item)
+    <script>
+        var countDownDate{{$index}} = new Date("{{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('M d, Y H:i:s') }}").getTime();
+        var x{{$index}} = setInterval(function() {
+          var now{{$index}} = new Date().getTime();
+          var distance{{$index}} = countDownDate{{$index}} - now{{$index}};
+          var days{{$index}} = Math.floor(distance{{$index}} / (1000 * 60 * 60 * 24));
+          var hours{{$index}} = Math.floor((distance{{$index}} % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes{{$index}} = Math.floor((distance{{$index}} % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds{{$index}} = Math.floor((distance{{$index}} % (1000 * 60)) / 1000);
+          document.getElementById("demo{{$item->kode_sewa}}").innerHTML = days{{$index}} + " Hari " + hours{{$index}} + " Jam "
+          + minutes{{$index}} + " Menit " + seconds{{$index}} + " Detik ";
+          if (distance{{$index}} < 0) {
+            clearInterval(x{{$index}});
+            document.getElementById("demo{{$item->kode_sewa}}").innerHTML = "Waktu Telah Habis";
+          }
+        }, 1000);
+    </script>
+
+    <script>
+    var startTime{{$index}} = new Date("{{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('M d, Y H:i:s') }}").getTime();
+    
+    function updateCounter{{$index}}() {
+        var now{{$index}} = new Date().getTime();
+        var elapsedTime{{$index}} = now{{$index}} - startTime{{$index}};
+        var days{{$index}} = Math.floor(elapsedTime{{$index}} / (1000 * 60 * 60 * 24));
+        var hours{{$index}} = Math.floor((elapsedTime{{$index}} % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes{{$index}} = Math.floor((elapsedTime{{$index}} % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds{{$index}} = Math.floor((elapsedTime{{$index}} % (1000 * 60)) / 1000);
+
+        var displayText{{$index}} = days{{$index}} + " Hari " + hours{{$index}} + " Jam " + minutes{{$index}} + " Menit " + seconds{{$index}} + " Detik ";
+        
+        // Mengupdate elemen HTML dengan ID "telat{{$item->kode_sewa}}"
+        document.getElementById("telat{{$item->kode_sewa}}").innerHTML = displayText{{$index}};
+
+        // Jika waktu telah habis, hentikan interval dan tampilkan pesan
+        if (elapsedTime{{$index}} < 0) {
+            clearInterval(interval{{$index}});
+            document.getElementById("telat{{$item->kode_sewa}}").innerHTML = "0 Hari 0 Jam 0 Menit 0 Detik";
+        }
+    }
+
+    // Jalankan fungsi updateCounter setiap detik
+    var interval{{$index}} = setInterval(updateCounter{{$index}}, 1000);
+</script>
+    @endforeach
 </html>

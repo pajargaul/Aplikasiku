@@ -12,15 +12,13 @@ class Pengembalian extends Model
 
     protected $fillable = [
         'kode_kembali',
-        'kondisi_barang',
         'jam_pengembalian',
-        'foto_sesudah',
         'denda',
         'kode_sewa_id',
     ];
 
-    public function user()
+    public function ke()
     {
-        return $this->belongsTo(Penyewaan::class, 'kode_sewa_id');
+        return $this->belongsTo(Penyewaan::class, 'kode_sewa_id', 'kode_sewa');
     }
 }

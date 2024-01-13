@@ -1,55 +1,3 @@
-{{-- <main>
-    <div class="kotak0">
-    <h1>Login Nelayan</h1>
-    <p>Masukkan email dan password</p>
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-        <form method="POST" action="{{ route('nelayan.login') }}">
-            @csrf
-            <!-- Email Address -->
-            <div class="custom-form-group0">
-                <x-input-label for="email" :value="__('Masukan Email')" />
-                <x-text-input id="email" class="cmt-4" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-            
-            <!-- Password -->
-            <div class="mt-4 custom-form-group0">
-                <x-input-label for="password" :value="__('Password')" />
-                <x-text-input id="password" class="cmt-4" type="password" name="password" required autocomplete="current-password" />
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-            
-    
-            <!-- Remember Me -->
-            <div class="flex-container0 mt-4">
-                <div class="block">
-                    <label for="remember_me" class="inline-flex items-center custom-checkbox" style="color: black">
-                        <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                        <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-                    </label>
-                </div>
-                @if (Route::has('admin.password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('nelayan.password.request') }}">
-                    {{ __('lupa kata sandi?') }}
-                </a>
-            @endif
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href='/admin/login'>
-                    Login Sebagai Admin
-                </a>
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href='#'>
-                    Menjadi Nelayan
-                </a>
-            </div>                    
-                <button class="ms-30">
-                    {{ __('Login') }}
-                </button>
-            </form> 
-        </div> 
-
-</main> --}}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -310,11 +258,26 @@
                     <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href='/admin/login'>
                         Login Sebagai Admin
                     </a>
+
+                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href='{{ route('login') }}'>
+                        Login Pengguna
+                    </a>
                 </div>                    
                     <button class="ms-30">
                         {{ __('Login') }}
                     </button>
-                </form> 
+                </form>
+                @if(session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif 
             </div> 
 
     <!-- Footer Start -->

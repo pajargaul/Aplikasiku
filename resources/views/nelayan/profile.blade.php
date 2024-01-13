@@ -40,15 +40,15 @@
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                @if(Auth::guard('nelayan')->user()->foto)
-                    <img class="border rounded-circle p-2" src="{{asset('storage/fotonelayan/'.Auth::guard('nelayan')->user()->foto)}}" style="width: 40px; height: 40px;">
-                    {{ Auth::guard('nelayan')->user()->nama }}
-                @else
-                <i class="fas fa-user fa-fw"></i>
-                    {{ Auth::guard('nelayan')->user()->nama }}
-                    @endif
-                </a>
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    @if(Auth::guard('nelayan')->user()->foto)
+                        <img class="border rounded-circle p-2" src="{{asset('storage/fotonelayan/'.Auth::guard('nelayan')->user()->foto)}}" style="width: 40px; height: 40px;">
+                        {{ Auth::guard('nelayan')->user()->nama }}
+                    @else
+                    <i class="fas fa-user fa-fw"></i>
+                        {{ Auth::guard('nelayan')->user()->nama }}
+                        @endif
+                    </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="{{route('nelayan.profile')}}">Profile</a></li>
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
@@ -136,76 +136,114 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="mt-4">Profile</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Profile</li>
                     </ol>
-                    <div class="row">
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">Primary Card</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
+
+
+                    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    @if(Auth::guard('nelayan')->user()->foto)
+                    <img class="rounded-circle mt-5 border rounded-circle p-2" width="150px" src="{{asset('storage/fotonelayan/'. Auth::guard('nelayan')->user()->foto)}}">
+                    @else
+                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    @endif
+                    <div class="container-fluid p-0 ">
+
+                    <div class="dropdown btn btn-link mr-2">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                              </svg>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                         <form action="{{route('update.profile.photo.nelayan')}}" enctype="multipart/form-data" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <input type="file" id="foto" name="foto">
                             </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                         </form>
                         </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-warning text-white mb-4">
-                                <div class="card-body">Warning Card</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-success text-white mb-4">
-                                <div class="card-body">Success Card</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-danger text-white mb-4">
-                                <div class="card-body">Danger Card</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
+                      </div>
+
+                      
+    
+                    <!-- Tempat Sampah untuk Menghapus Foto -->
+                    <a href="#" class="btn btn-link mr-2" id="deletePhotoBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                          </svg>
+                    </a>
                     </div>
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-area me-1"></i>
-                                    Area Chart Example
-                                </div>
-                                <div class="card-body"><canvas id="myAreaChart" width="100%"
-                                        height="40"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-bar me-1"></i>
-                                    Bar Chart Example
-                                </div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%"
-                                        height="40"></canvas></div>
-                            </div>
-                        </div>
+                    @if(session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
                     </div>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            DataTable Example
-                        </div>
+                @endif
+                
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
                     </div>
+                @endif
+                    <span class="text-black-50">{{Auth::guard('nelayan')->user()->nama}}</span>
+                    <span class="text-black-50">{{Auth::guard('nelayan')->user()->email}}</span>
+                    <span> </span>
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile-Nelayan Settings</h4>
+                    </div>
+                    <div class="row mt-3">
+                    <form action="{{ route('nelayan.profile.update') }}" method="post">
+                        @csrf
+
+                        <!-- Kolom Nama -->
+                        <div class="mb-3" style="color: black">
+                            <label for="nama" class="form-label">Nama :</label>
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{Auth::guard('nelayan')->user()->nama}}">
+                        </div>
+
+                        <div class="mb-3" style="color: black">
+                            <label for="name" class="form-label">alamat :</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="{{Auth::guard('nelayan')->user()->alamat}}">
+                        </div>
+
+                        <div class="mb-3" style="color: black">
+                            <label for="nomer_telepon" class="form-label">Nomer Telepon :</label>
+                            <input type="tel" class="form-control" id="nomer_telepon" name="nomer_telepon" value="{{Auth::guard('nelayan')->user()->nomer_telepon}}" pattern="[0-9]{10,14}" title="Masukkan nomor telepon yang valid (minimal 10 digit, maksimal 14 digit)">
+                        </div>   
+                        
+                        <div class="mb-3" style="color: black">
+                            <label for="nama_kapal" class="form-label">Nama Kapal Yang dimiliki :</label>
+                            <input type="text" class="form-control" id="nama_kapal" name="nama_kapal" value="{{Auth::guard('nelayan')->user()->nama_kapal}}">
+                        </div> 
+                        
+                        <div class="mb-3" style="color: black">
+                            <label for="jenis_kapal" class="form-label">Jenis Kapal :</label>
+                            <input type="text" class="form-control" id="jenis_kapal" name="jenis_kapal" value="{{Auth::guard('nelayan')->user()->jenis_kapal}}">
+                        </div> 
+
+                        <div class="mb-3" style="color: black">
+                            <label for="jumlah_abk" class="form-label">Jumlah ABK (Anak Buah Kapal) :</label>
+                            <input type="number" class="form-control" id="jumlah_abk" name="jumlah_abk" value="{{Auth::guard('nelayan')->user()->jumlah_abk}}">
+                        </div>
+
+                        <!-- Tombol Submit -->
+                        <button type="submit" class="btn btn-primary">Update Profil</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                 </div>
             </main>
             <footer class="py-4 mt-auto"
@@ -274,7 +312,33 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        document.getElementById('deletePhotoBtn').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah aksi bawaan dari tautan
+            if (confirm('Anda yakin ingin menghapus foto profil?')) {
+                // Mengirim permintaan DELETE menggunakan Fetch API
+                fetch('{{ route('delete.profile.photo.nelayan') }}', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle respons
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error('Error:', error);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -111,4 +111,11 @@ Route::prefix('nelayan')->group(function () {
     route::get('/pesanan', [NelayanController::class, 'pesanan'])->name('nelayan.pesanan')
     ->middleware('nelayan');
     Route::get('/mulaisewa/{kode_sewa}', [PenyewaanController::class, 'mulaisewa'])->name('penyewaan.mulaisewa');
+    Route::get('/profile', [NelayanController::class, 'profile'])->name('nelayan.profile');
+    Route::post('/update-profile-photo-nelayan',[NelayanController::class, 'uploadpotouser'] )->name('update.profile.photo.nelayan');
+    Route::delete('/delete-profile-photo-nelayan', [NelayanController::class, 'deletepotouser'])->name('delete.profile.photo.nelayan');
+    Route::post('/nelayan-profile', [NelayanController::class, 'update'])->name('nelayan.profile.update');
+    Route::get('/detailpesanan', [PenyewaanController::class, 'detailpesanan'])->name('nelayan.detailpesanan');
+    Route::get('/nelayan-barangkembali/{kode_sewa}/{jamkembali}/{jumlah}', [NelayanController::class, 'barangkembali'])->name('nelayan.barangkembali');
+    Route::get('/history-pesanan', [NelayanController::class, 'historypesanan'])->name('nelayan.historypesanan'); 
 });
