@@ -15,8 +15,12 @@ class APIAuthController extends Controller
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string'],
+            'username' => ['required', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email',],
+            'alamat'=> ['required', 'string'],
+            'notelepon'=> ['required', 'string'],
             'password' => ['required'],
+            'confirm_password' => 'required|same:password',
         ]);
 
         if ($validator->fails()) {
@@ -31,8 +35,11 @@ class APIAuthController extends Controller
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
 
-        $succes['email'] = $user->email;
         $succes['name'] = $user->name;
+        $succes['username'] = $user->username;
+        $succes['email'] = $user->email;
+        $succes['alamat'] = $user->alamat;
+        $succes['notelepon'] = $user->notelepon;
 
         return response()->json([
             'succes' => true,
@@ -46,6 +53,7 @@ class APIAuthController extends Controller
             $auth = Auth::user();
             $succes['token'] = $auth->createToken('auth_token')->plainTextToken;
             $succes['name'] = $auth->name;
+
 
             return response()->json([
                 'succes' => true,

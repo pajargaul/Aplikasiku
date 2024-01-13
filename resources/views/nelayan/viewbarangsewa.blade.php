@@ -14,31 +14,31 @@
                 justify-content: space-between;
                 padding: 20px;
             }
-        
+
             .asolole {
                 width: calc(25% - 20px); /* 25% untuk empat kolom, dan dikurangi margin antar kartu */
                 margin-bottom: 20px; /* Jarak antar kartu */
                 box-sizing: border-box;
             }
-        
+
             .card img {
                 height: 200px;
                 object-fit: cover;
                 width: 100%;
             }
-        
+
             @media (max-width: 1200px) {
                 .asolole {
                     width: calc(33.33% - 20px); /* Tiga kolom pada layar berukuran lebih kecil */
                 }
             }
-        
+
             @media (max-width: 992px) {
                 .asolole {
                     width: calc(50% - 20px); /* Dua kolom pada layar berukuran lebih kecil */
                 }
             }
-        
+
             @media (max-width: 768px) {
                 .asolole {
                     width: 100%; /* Satu kolom pada layar sangat kecil */
@@ -173,7 +173,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                    </div> 
+                    </div>
                     </div>
                 </main>
                 <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
@@ -188,7 +188,7 @@
                                     <li><a href="#">Resources</a></li>
                                 </ul>
                             </div>
-                          
+
                             <div class="ul2">
                                 <ul class="menufooter">
                                     <li><a href="#">Jobs</a></li>
