@@ -67,6 +67,16 @@ class NelayanForgotPasswordController extends Controller
    {
     $request->validate([
         'password' => 'required|min:8',
+<<<<<<< HEAD
+=======
+        'password_confirmation' => 'required|same:password|min:8',
+    ], [
+        'password.required' => 'Kata sandi wajib diisi.',
+        'password.min' => 'Kata sandi minimal harus 8 karakter.',
+        'password_confirmation.required' => 'Konfirmasi kata sandi wajib diisi.',
+        'password_confirmation.same' => 'Konfirmasi kata sandi harus sama dengan kata sandi.',
+        'password_confirmation.min' => 'Konfirmasi kata sandi minimal harus 8 karakter.',
+>>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
     ]);
 
     $user = DB::table('nelayans')
