@@ -3,23 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
-<<<<<<< HEAD
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Tb_Barangsewa;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
-=======
+use App\Models\Penyewaan;
 use Illuminate\Support\Str;
+use App\Models\Pengembalian;
 use Illuminate\Http\Request;
 use App\Models\Tb_Barangsewa;
+use App\Http\Middleware\Nelayan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Nelayan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 use Illuminate\Support\Facades\Validator;
 
 class APIAuthController extends Controller
@@ -27,14 +21,7 @@ class APIAuthController extends Controller
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string'],
-<<<<<<< HEAD
-            'username' => ['required', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email',],
-            'alamat'=> ['required', 'string'],
-            'notelepon'=> ['required', 'string'],
-=======
-            'email' => ['required', 'string', 'lowercase', 'email',],
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
             'password' => ['required'],
             'confirm_password' => 'required|same:password',
         ]);
@@ -50,17 +37,8 @@ class APIAuthController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-
-<<<<<<< HEAD
-        $succes['name'] = $user->name;
-        $succes['username'] = $user->username;
-        $succes['email'] = $user->email;
-        $succes['alamat'] = $user->alamat;
-        $succes['notelepon'] = $user->notelepon;
-=======
         $succes['email'] = $user->email;
         $succes['name'] = $user->name;
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 
         return response()->json([
             'succes' => true,
@@ -74,11 +52,6 @@ class APIAuthController extends Controller
             $auth = Auth::user();
             $succes['token'] = $auth->createToken('auth_token')->plainTextToken;
             $succes['name'] = $auth->name;
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
             return response()->json([
                 'succes' => true,
                 'masage' => 'login berhasil',
@@ -93,9 +66,6 @@ class APIAuthController extends Controller
             ]);
         }
     }
-
-<<<<<<< HEAD
-=======
 
     public function loginnelayan(Request $request)
 {
@@ -127,68 +97,39 @@ class APIAuthController extends Controller
         ], 500);
     }
 }
-
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
     public function getMarineNews()
     {
         $baseUrl = 'https://newsapi.org/v2/top-headlines?country=id&apiKey=1371b0a67af24ce096f57c0418708c31';
         $Url = 'https://newsapi.org/v2/everything?domains=detik.com&apiKey=1371b0a67af24ce096f57c0418708c31';
-<<<<<<< HEAD
-
-        // Ambil respons dari kedua URL
-        $response1 = Http::get($baseUrl);
-        $response2 = Http::get($Url);
-
-=======
     
         // Ambil respons dari kedua URL
         $response1 = Http::get($baseUrl);
         $response2 = Http::get($Url);
-    
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
         // Periksa jika keduanya berhasil
         if ($response1->successful() && $response2->successful()) {
             // Ambil data dari JSON respons
             $data1 = $response1->json();
             $data2 = $response2->json();
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
-            // Gabungkan data dari kedua respons
             $articles['articles'] = array_merge($data2['articles'], $data1['articles']);
         } else {
             // Jika salah satu atau kedua panggilan gagal, atur $articles menjadi null atau array kosong sesuai kebutuhan
             $articles['articles'] = [];
         }
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
-        // Kirim data ke view
         return view('berita', compact('articles'));
     }
 
     public function ViewBarangsewa(Request $request){
         try {
             $barangsewas = Tb_Barangsewa::all();
-<<<<<<< HEAD
-=======
     
             $barangsewas->each(function ($barangsewa) {
                 $barangsewa->foto_url = asset('storage/fotobarang/' . $barangsewa->foto_barang);
             });
-    
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
             return response()->json(['success' => true, 'data' => $barangsewas], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
-<<<<<<< HEAD
-=======
 
     public function storesewaalat(Request $request)
 {
@@ -200,17 +141,9 @@ class APIAuthController extends Controller
             'jumlah' => 'required|integer',
             'foto_barang' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        // Mendapatkan nilai maksimum kode_barang dari database
         $maxKodeBarang = Tb_Barangsewa::max('kode_barang');
-
-        // Mengekstrak nomor dari kode_barang, menambahkan 1, dan memformatnya menjadi tiga digit dengan leading zero
         $nextNumber = intval(substr($maxKodeBarang, 1)) + 1;
-
-        // Format nomor menjadi tiga digit dengan leading zero
         $formattedNumber = str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
-
-        // Membuat kode_barang baru
         $newKodeBarang = 'B' . $formattedNumber;
 
         $fotoFile = $request->file('foto_barang');
@@ -283,25 +216,15 @@ public function uploadpotouser(Request $request)
 public function deletepotouser(Request $request)
 {
     try {
-        // Ambil ID user dari request atau sesuaikan dengan kebutuhan
         $userId = $request->user()->id;
-
-        // Ambil user dari database
         $user = User::findOrFail($userId);
-
-        // Hapus foto dari storage jika ada
         if ($user->foto) {
             Storage::delete('public/fotouser/' . $user->foto);
         }
-
-        // Hapus foto dari database
         $user->foto = null;
         $user->save();
-
-        // Berikan respons JSON sesuai kebutuhan
         return response()->json(['success' => true, 'message' => 'Foto profil dihapus.'], 200);
     } catch (\Exception $e) {
-        // Berikan respons JSON untuk kasus kesalahan
         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
     }
 }
@@ -313,11 +236,11 @@ public function update(Request $request)
         $request->validate([
             'name' => 'required|string|max:255',
             'alamat' => 'string',
-            'nomer_telepon' => 'string',
+            'nomer_telepon' => 'string|min:11',
         ]);
 
         $up = DB::table('users')
-            ->where('email', Auth::user()->email)
+            ->where('email', $request->user()->email)
             ->update([
                 'name' => $request->input('name'),
                 'alamat' => $request->input('alamat'),
@@ -340,14 +263,11 @@ public function getLoggedInUserData(Request $request)
         $user = $request->user();
 
         if ($user) {
-            // Pengguna sedang login, kembalikan data dalam respons JSON
-            return response()->json(['success' => true, 'data' => $user], 200);
+        return response()->json(['success' => true, 'data' => $user], 200);
         } else {
-            // Tidak ada pengguna yang sedang login
             return response()->json(['success' => false, 'message' => 'Pengguna tidak terautentikasi.'], 401);
         }
     } catch (\Exception $e) {
-        // Kesalahan server
         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
     }
 }
@@ -362,43 +282,110 @@ public function updateBarangSewa(Request $request, $kode_barang)
             'jumlah' => 'nullable|integer',
             'foto_barang' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        
-        
 
-        // Temukan barang sewa berdasarkan kode_barang
         $barangSewa = Tb_Barangsewa::where('kode_barang', $kode_barang)->first();
 
         if (!$barangSewa) {
             return response()->json(['success' => false, 'message' => 'Barang sewa tidak ditemukan.'], 404);
         }
 
-        // Perbarui data barang sewa
         $barangSewa->nama_barang = $request->input('nama_barang');
         $barangSewa->harga = $request->input('harga');
         $barangSewa->kondisi = $request->input('kondisi');
         $barangSewa->jumlah = $request->input('jumlah');
 
-        // Perbarui foto barang jika ada yang diunggah
         if ($request->hasFile('foto_barang')) {
             $fotoFile = $request->file('foto_barang');
             $namaFileUnik = Str::uuid() . '_' . time() . '_' . $fotoFile->getClientOriginalName();
             $fotoPath = $fotoFile->storeAs('public/fotobarang', $namaFileUnik);
-
-            // Hapus foto lama dari penyimpanan
             Storage::delete('public/fotobarang/' . $barangSewa->foto_barang);
 
             $barangSewa->foto_barang = $namaFileUnik;
         }
-
-        // Simpan perubahan ke database
         $barangSewa->save();
 
-        return response()->json(['success' => true, 'message' => 'Data barang sewa berhasil diperbarui.']);
+        return response()->json(['success' => true, 'message' => 'Data barang dengan kode_barang' . $kode_barang . 'sewa berhasil diperbarui.']);
     } catch (\Exception $e) {
         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
     }
 }
 
+public function tambahBarangSewa(Request $request)
+{
+    try {
+        $request->validate([
+            'nama_barang' => 'required|string',
+            'harga' => 'required|numeric',
+            'kondisi' => 'required|in:Baik,Kurang_baik,Rusak',
+            'jumlah' => 'required|integer',
+            'foto_barang' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
+        $maxKodeBarang = Tb_Barangsewa::max('kode_barang');
+        $nextNumber = intval(substr($maxKodeBarang, 1)) + 1;
+        $formattedNumber = str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+        $newKodeBarang = 'B' . $formattedNumber;
+
+        $fotoFile = $request->file('foto_barang');
+        $namaFileUnik = Str::uuid() . '_' . time() . '_' . $fotoFile->getClientOriginalName();
+        $fotoPath = $fotoFile->storeAs('public/fotobarang', $namaFileUnik);
+
+        $barangSewa = Tb_Barangsewa::create([
+            'kode_barang' => $newKodeBarang,
+            'nama_barang' => $request->input('nama_barang'),
+            'harga' => $request->input('harga'),
+            'kondisi' => $request->input('kondisi'),
+            'jumlah' => $request->input('jumlah'),
+            'foto_barang' => $namaFileUnik,
+            'nelayan_id' => $request->user()->id,
+        ]);
+
+        if ($barangSewa) {
+            $fotoPath;
+            return response()->json(['success' => true, 'message' => 'Data barang sewa berhasil ditambahkan dengan kode sewa ' . $newKodeBarang]);
+        }else {
+            return response()->json(['error' => true, 'message' => 'Data barang sewa gagal ditambahkan.']);
+        }
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function ViewBarangsewanelayan(Request $request){
+    try {
+        $barangsewas = Tb_Barangsewa::where('nelayan_id', $request->user()->id)->get();
+        return response()->json(['success' => true, 'data' => $barangsewas], 200);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+    }
+}
+
+public function keranjangApi(Request $request)
+{
+    $pesanan = Penyewaan::where('user_id', $request->user()->id)
+                ->whereNull('jam_sewa')
+                ->whereNull('jam_pengembalian')
+                ->whereNull('status_pengembalian')
+                ->get();
+
+    return response()->json(['data' => $pesanan], 200);
+}
+
+public function keranjangApi2(Request $request)
+{
+    $pesanan = Penyewaan::where('user_id', $request->user()->id)
+                ->wherenotNull('jam_sewa')
+                ->wherenotNull('jam_pengembalian')
+                ->whereNull('status_pengembalian')
+                ->get();
+    return response()->json(['data' => $pesanan], 200);
+}
+
+public function barangKembaliApi()
+{
+    $sewa = Penyewaan::where('user_id', auth()->id())->get();
+    $kodeBarangArray2 = $sewa->pluck('kode_sewa')->toArray();
+    $pengembalian = Pengembalian::whereIn('kode_sewa_id', $kodeBarangArray2)->get();
+    return response()->json(['data' => $pengembalian], 200);
+}
 }

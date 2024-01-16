@@ -9,6 +9,8 @@ class Penyewaan extends Model
 {
     use HasFactory;
     protected $table = 'tb_penyewaans';
+    protected $primaryKey = 'kode_sewa';
+    protected $keyType = 'string';
 
     protected $fillable = [
         'kode_sewa',

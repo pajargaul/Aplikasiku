@@ -32,8 +32,6 @@ class LoginRequest extends FormRequest
         ];
     }
 
-<<<<<<< HEAD
-=======
     public function messages()
 {
     return [
@@ -45,7 +43,6 @@ class LoginRequest extends FormRequest
     ];
 }
 
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
     /**
      * Attempt to authenticate the request's credentials.
      *

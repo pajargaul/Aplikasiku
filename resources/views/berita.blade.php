@@ -83,17 +83,10 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-3 p-4 p-lg-0">
                 <a href="{{route('index')}}" class="nav-item nav-link">Dashboard</a>
-<<<<<<< HEAD
-                <a href="{{route('about')}}" class="nav-item nav-link active">About</a>
-                <a href="{{route('produk')}}" class="nav-item nav-link">Produk</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
-=======
                 <a href="{{route('about')}}" class="nav-item nav-link">About</a>
                 <a href="{{route('produk')}}" class="nav-item nav-link">Produk</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link active dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                     <div class="dropdown-menu fade-down m-0">
                         <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
@@ -121,10 +114,6 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
-<<<<<<< HEAD
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
-=======
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <li class="breadcrumb-item text-white active" aria-current="page">Berita</li>
                         </ol>
                     </nav>
@@ -136,24 +125,6 @@
     <div class="container">
         <ul class="news-list">
             @foreach ($articles['articles'] as $article)
-<<<<<<< HEAD
-                <li>
-                    <div class="news-box wow fadeInUp" data-wow-delay="0.1s">
-                        <h2>{{ $article['title'] }}</h2>
-                        <p style="color: black">{{ $article['description'] }}</p>
-                        <p style="color: black">Author: {{ $article['author'] }}</p>
-                        <p style="color: black">Published At: {{ $article['publishedAt'] }}</p>
-                        @if ($article['urlToImage'] != null)
-                            <img src="{{ $article['urlToImage'] }}" alt="Image">
-                        @endif
-                        <p style="color: black">{{ $article['content'] }}</p>
-                        <a href="{{ $article['url'] }}" target="_blank">Read More</a>
-                    </div>
-                </li>
-            @endforeach
-        </ul>
-    </div>
-=======
                 {{-- Check if the title contains keywords related to sea, fish, port, or ship --}}
                 @if (stripos($article['title'], 'laut') !== false || stripos($article['title'], 'ikan') !== false || stripos($article['title'], 'pelabuhan') !== false || stripos($article['title'], 'kapal') !== false)
                     <li>
@@ -173,8 +144,6 @@
             @endforeach
         </ul>
     </div>
-    
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">

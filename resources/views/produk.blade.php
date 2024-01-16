@@ -88,11 +88,7 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lainnya</a>
                     <div class="dropdown-menu fade-down m-0">
-<<<<<<< HEAD
-                        <a href="team.html" class="dropdown-item">Berita Tentang Kelautan</a>
-=======
                         <a href="{{route('berita')}}" class="dropdown-item">Berita Tentang Kelautan</a>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                         <a href="testimonial.html" class="dropdown-item">Blog</a>
                     </div>
                 </div>
@@ -118,10 +114,6 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Dashboard</a></li>
-<<<<<<< HEAD
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Lainnya</a></li>
-=======
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                             <li class="breadcrumb-item text-white active" aria-current="page">Produk</li>
                         </ol>
                     </nav>
@@ -190,22 +182,13 @@
                 <img src="{{ asset('storage/fotobarang/' . $barang->foto_barang) }}" class="card-img-top" alt="{{ $barang->nama_barang }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $barang->nama_barang }}</h5>
-<<<<<<< HEAD
-                    <p class="card-text">Rp {{ number_format($barang->harga, 0, ',', '.') }},-</p>
-                    <a href="#" class="btn btn-warning">Detail</a>
-                    <a href="#" class="btn btn-danger">Beli</a>
-=======
                     <p class="card-text" style="color: black">Rp {{ number_format($barang->harga, 0, ',', '.') }},-</p>
                     <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#productModal{{ $barang->kode_barang }}">Detail</a>
                     <a href="{{ route('checkout', ['kode_barang' => $barang->kode_barang]) }}" class="btn btn-danger">Sewa</a>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                 </div>
             </div>
         @endforeach
     </div>
-
-<<<<<<< HEAD
-=======
     @foreach($barangSewa as $barang)
     <!-- Existing product card code -->
 
@@ -236,8 +219,6 @@
         </div>
     </div>
 @endforeach
-
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
     <!-- Testimonial Start -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">

@@ -1,44 +1,4 @@
-<<<<<<< HEAD
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password</title>
-</head>
-<body>
-    <h2>Reset Password</h2>
-
-    @if ($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form method="POST" action="#">
-        @csrf
-
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="{{ $email }}" readonly>
-
-        <label for="password">New Password:</label>
-        <input type="password" name="password" required>
-
-        <label for="password_confirmation">Confirm Password:</label>
-        <input type="password" name="password_confirmation" required>
-
-        <button type="submit">Reset Password</button>
-    </form>
-</body>
-</html> --}}
-
-=======
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
-<<!DOCTYPE html>
+<<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

@@ -1,23 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Reset Password</title>
-</head>
-<body>
-    <p>Hello!</p>
-    <p>You are receiving this email because we received a password reset request for your account.</p>
-
-    <p><a href="{{ $resetUrl }}">Reset Password</a></p>
-
-    <p>This password reset link will expire in 60 minutes.</p>
-
-    <p>If you did not request a password reset, no further action is required.</p>
-
-    <p>Regards,<br>Laravel</p>
-=======
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -77,6 +58,5 @@
 
         <p>Jika Anda tidak melakukan permintaan reset password, tidak perlu melakukan tindakan lebih lanjut.</p>
     </div>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 </body>
 </html>

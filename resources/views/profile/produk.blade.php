@@ -95,8 +95,12 @@
                 </div>
                 <a href="{{route('keranjang')}}" class="nav-item nav-link">
                     @php
-                        $jumlahTabel = \App\Models\Penyewaan::where('user_id', Auth::user()->id)->count();
-                    @endphp
+                    $jumlahTabel = \App\Models\Penyewaan::where('user_id', Auth::user()->id)
+                                    ->whereNull('status_pengembalian')
+                                    ->whereNull('jam_sewa')
+                                    ->whereNull('jam_pengembalian')
+                                    ->count();
+                @endphp    
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-cart4" viewBox="0 0 16 16">
                         <path

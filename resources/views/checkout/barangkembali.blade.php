@@ -153,58 +153,27 @@
         </div>
     </div>
 
-    <div class="container mt-3">
-    <div class="row">
-        @forelse ($pesanan as $item)
-        @if ($item->jam_sewa === null && $item->jam_pengembalian === null)
-        <div class="col-sm-3 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ $item->barangSewa->nama_barang }}</h5>
-              <img src="{{ asset('storage/fotobarang/' . $item->barangSewa->foto_barang) }}" class="mr-3" alt="Product Image">
-              <p class="card-text">Jumlah Sewa :{{ $item->jumlah_sewa }}</p>
-              <a href="{{ route('hubungi.pemilik', ['id' => $item->barangSewa->nelayan_id]) }}" class="btn btn-primary" class="btn btn-primary">Hubungi Pemilik</a>
-              <a href="#" class="btn btn-warning" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#productModal{{ $item->barangSewa->kode_barang}}">Detail</a>
-            </div>
-          </div>
-        </div>
-        @endif
-        @empty
-        <div class="card-body">
-            <p>Belum ada barang di keranjang belanja.</p>
-        </div>
-    @endforelse
-      </div>
-    </div>
-
-    @foreach($pesanan as $item)
-    <!-- Existing product card code -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="productModal{{ $item->barangSewa->kode_barang }}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="productModalLabel" style="color: black">{{ $item->barangSewa->nama_barang }} - Detail</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="{{ asset('storage/fotobarang/' . $item->barangSewa->foto_barang) }}" class="card-img-top" alt="{{ $item->barangSewa->nama_barang }}">
-                    <p style="color: black">Kode Barang : {{ $item->barangSewa->kode_barang }}</p>
-                    <p style="color: black">Nama Pemilik : {{ $item->barangSewa->nelayan->nama }}</p>
-                    <p style="color: black">Nomer telepon pemilik : {{ $item->barangSewa->nelayan->nomer_telepon }}</p>
-                    <p style="color: black">Jumlah Sewa : {{ $item->jumlah_sewa }} Barang</p>
-                    <p style="color: black">waktu barang yang akan disewa Sewa : {{ $item->jumlah_waktu }} Jam</p>
-                    <!-- Add other product details here -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="{{ route('hubungi.pemilik', ['id' => $item->barangSewa->nelayan_id]) }}" class="btn btn-primary">Hubungi Pemilik</a>
-                </div>
-            </div>
-        </div>
-    </div>
-@endforeach
+    @if ($pesanan->isEmpty())
+                    <p>Tidak ada pesanan saat ini.</p>
+                    @else
+                    @foreach ($pesanan as $item)
+                    <div class="card mb-4">
+                            <div class="card-header">
+                                detail
+                            </div>
+                            <div class="card-body">
+                                <img class="card-img-top img-thumbnail" src="{{ asset('storage/fotobarang/' . $item->ke->barangSewa->foto_barang) }}" alt="Card image cap" style="max-width: 200px; margin: auto;">
+                               <h5 class="card-title">{{ $item->ke->barangSewa->nama_barang}}</h5>
+                               <h6 class="card-title" style="color: red">nama peilik : {{ $item->ke->barangSewa->nelayan->nama}}</h6>
+                               <h6 class="card-title" style="color: red">Alamat : {{ $item->ke->barangSewa->nelayan->alamat}}</h6>
+                               <h6 class="card-title" style="color: red">nomor telepon : {{ $item->ke->barangSewa->nelayan->nomer_telepon}}</h6>
+                             <p class="card-text">barang ini disewa pada hari {{ \Carbon\Carbon::parse($item->ke->jam_sewa)->isoFormat('dddd') }}, tanggal {{ \Carbon\Carbon::parse($item->ke->jam_sewa)->format('d/m/Y') }} jam {{ \Carbon\Carbon::parse($item->ke->jam_sewa)->format('H:i') }}</p>
+                            <p class="card-text">dan telah Dikembalikan oleh pengunjung pada hari {{ \Carbon\Carbon::parse($item->jam_pengembalian)->isoFormat('dddd') }}, tanggal {{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('d/m/Y') }} jam {{ \Carbon\Carbon::parse($item->jam_pengembalian)->format('H:i') }}</p>
+                            <h4 class="card-title">Denda(dikenakan denda biaya rp.500 /menit keterlambatan) : Rp {{ number_format($item->denda, 0, ',', '.') }},-</h4>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto"
@@ -277,5 +246,4 @@
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
-
 </html>

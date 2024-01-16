@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,8 +72,12 @@
                 </div>
                 <a href="{{route('keranjang')}}" class="nav-item nav-link">
                     @php
-                        $jumlahTabel = \App\Models\Penyewaan::where('user_id', Auth::user()->id)->count();
-                    @endphp
+                    $jumlahTabel = \App\Models\Penyewaan::where('user_id', Auth::user()->id)
+                                    ->whereNull('status_pengembalian')
+                                    ->whereNull('jam_sewa')
+                                    ->whereNull('jam_pengembalian')
+                                    ->count();
+                @endphp    
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-cart4" viewBox="0 0 16 16">
                         <path
@@ -226,14 +204,10 @@
                         <button type="submit" class="btn btn-primary">Update Profil</button>
                     </form>
                     </div>
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
                 </div>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-</x-app-layout>
-=======
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto" style="background-image: url('{{asset('img/Group 240.svg')}}'); background-color: #097ABA; border-top-right-radius:40px; border-top-left-radius:40px; height:500px; background-size: cover; position: relative;">
@@ -330,5 +304,3 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
-
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055

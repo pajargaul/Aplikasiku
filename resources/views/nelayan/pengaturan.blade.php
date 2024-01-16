@@ -7,50 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
-    <style>
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        .asolole {
-            width: calc(25% - 20px);
-            /* 25% untuk empat kolom, dan dikurangi margin antar kartu */
-            margin-bottom: 20px;
-            /* Jarak antar kartu */
-            box-sizing: border-box;
-        }
-
-        .card img {
-            height: 200px;
-            object-fit: cover;
-            width: 100%;
-        }
-
-        @media (max-width: 1200px) {
-            .asolole {
-                width: calc(33.33% - 20px);
-                /* Tiga kolom pada layar berukuran lebih kecil */
-            }
-        }
-
-        @media (max-width: 992px) {
-            .asolole {
-                width: calc(50% - 20px);
-                /* Dua kolom pada layar berukuran lebih kecil */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .asolole {
-                width: 100%;
-                /* Satu kolom pada layar sangat kecil */
-            }
-        }
-    </style>
+    <title>Dashboard Nelayan</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -228,196 +185,107 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Sewakan Alat</h1>
+                    <h1 class="mt-4">Setting</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Sewakan Alat</li>
+                        <li class="breadcrumb-item active">Setting</li>
                     </ol>
+
                     <div class="card mb-4">
-                        <div class="container card-container">
-                            @foreach ($barangSewa as $barang)
-                                <div class="card asolole">
-                                    <img src="{{ asset('storage/fotobarang/' . $barang->foto_barang) }}"
-                                        class="card-img-top" alt="{{ $barang->nama_barang }}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $barang->nama_barang }}</h5>
-                                        <p class="card-text">Rp {{ number_format($barang->harga, 0, ',', '.') }},-</p>
-                                        <a href="#" class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#productModal{{ $barang->kode_barang }}">Detail</a>
-                                        <a href="#" class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#productModal2{{ $barang->kode_barang }}"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                                            </svg></a>
-                                        <a href="#" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#productModal3{{ $barang->kode_barang }}"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                                                <path
-                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                                            </svg></a>
+                        <div class="card-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                            </svg>
+                            Informasi Akun
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('nelayan.updatename') }}">
+                                @csrf
+                                <div class="mb-3 row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="nama"
+                                            value="{{ Auth::guard('nelayan')->user()->nama }}">
                                     </div>
                                 </div>
-                            @endforeach
+                                <div class="mb-3 row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" name="email"
+                                            value="{{ Auth::guard('nelayan')->user()->email }}" readonly autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <button style="width: 20%; margin-left:auto; margin-right:auto; margin-top:3%"
+                                        type="submit" class="btn btn-primary">save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
-                    @foreach ($barangSewa as $barang)
-                        <!-- Existing product card code -->
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="productModal{{ $barang->kode_barang }}" tabindex="-1"
-                            aria-labelledby="productModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="productModalLabel" style="color: black">
-                                            {{ $barang->nama_barang }} - Detail</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img src="{{ asset('storage/fotobarang/' . $barang->foto_barang) }}"
-                                            class="card-img-top" alt="{{ $barang->nama_barang }}">
-                                        <p style="color: black">Kode Barang : {{ $barang->kode_barang }}</p>
-                                        <p style="color: black">Nama Pemilik : {{ $barang->nelayan->nama }}</p>
-                                        <p style="color: black">Nomer telepon pemilik :
-                                            {{ $barang->nelayan->nomer_telepon }}</p>
-                                            <p class="card-text">Harga : Rp {{ number_format($barang->harga, 0, ',', '.') }},-</p>
-                                            <p style="color: black">Kondisi : {{ $barang->kondisi }}</p>
-                                            <p style="color: black">Jumlah Barang : {{ $barang->jumlah }}</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="#" class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#productModal2{{ $barang->kode_barang }}"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                                            </svg></a>
-                                        <a href="#" class="btn btn-danger"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                                                <path
-                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                                            </svg></a>
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-person-gear" viewBox="0 0 16 16">
+                                <path
+                                    d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
+                            </svg>
+                            Rubah Password
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('nelayan.newpassword') }}">
+                                @csrf
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Current
+                                        Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" name="current_password">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach
-
-                    @foreach ($barangSewa as $barang)
-                        <!-- Existing product card code -->
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="productModal2{{ $barang->kode_barang }}" tabindex="-1"
-                            aria-labelledby="productModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="productModalLabel" style="color: black">
-                                            {{ $barang->nama_barang }} - Update</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ route('nealayan.updateBarangSewa', ['kode_barang' => $barang->kode_barang])}}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                        <div class="mb-3 row">
-                            <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nama_barang" value="{{$barang->nama_barang}}">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="harga" class="col-sm-2 col-form-label">Harga :</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="harga" name="harga" step="0.01" min="0.01" placeholder="jangan gunakan tanda titik , example:15000" value="{{$barang->harga}}">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="kondisi" class="col-sm-2 col-form-label">Kondisi</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" aria-label="Kondisi" name="kondisi">
-                                    <option value="Baik" @if($barang->kondisi == 'Baik') selected @endif>Baik</option>
-                                    <option value="Kurang_baik" @if($barang->kondisi == 'Kurang_baik') selected @endif>Kurang Baik</option>
-                                    <option value="Rusak" @if($barang->kondisi == 'Rusak') selected @endif>Rusak</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3 row">
-                            <label for="jumlah" class="col-sm-2 col-form-label">Jumlah Barang</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" name="jumlah" value="{{$barang->jumlah}}">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="formFile" class="col-sm-2 col-form-label">Upload Foto Barang</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="file" id="formFile" name="foto_barang">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <button type="submit" class="btn btn-success">update</button>
-                        </div>
-                                        </form>
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" name="new_password">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach
 
-                    @foreach ($barangSewa as $barang)
-                        <!-- Existing product card code -->
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="productModal3{{ $barang->kode_barang }}" tabindex="-1"
-                            aria-labelledby="productModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="productModalLabel" style="color: black">
-                                            {{ $barang->nama_barang }} - Delete</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ route('nealayan.deleteBarangSewa', ['kode_barang' => $barang->kode_barang])}}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-
-                                            <p>apakah anda akan menghapus barang ini?</p>
-                        <button type="submit" class="btn btn-danger">iya</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        </form>
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Confirm
+                                        Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" name="confirm_password">
                                     </div>
                                 </div>
-                            </div>
+
+                                <div class="mb-3 row">
+                                    <button style="width: 20%; margin-left:auto; margin-right:auto; margin-top:3%"
+                                        type="submit" class="btn btn-danger">Perbaharui Password</button>
+                                </div>
+
+                            </form>
                         </div>
-                    @endforeach
-                    @if(session('st'))
-                    <div class="alert alert-danger">
-                        {{ session('st') }}
                     </div>
-                @endif
-            
-                @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                    @if (session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                @if (session('st'))
+                                    <div class="alert alert-danger">
+                                        {{ session('st') }}
+                                    </div>
+                                @endif
                 </div>
             </main>
             <footer class="py-4 mt-auto"
@@ -486,6 +354,33 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="{{ asset('js/datatables-simple-demo.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        document.getElementById('deletePhotoBtn').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah aksi bawaan dari tautan
+            if (confirm('Anda yakin ingin menghapus foto profil?')) {
+                // Mengirim permintaan DELETE menggunakan Fetch API
+                fetch('{{ route('delete.profile.photo.nelayan') }}', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle respons
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        // Handle error
+                        console.error('Error:', error);
+                    });
+            }
+        });
+    </script>
 </body>
 
 </html>

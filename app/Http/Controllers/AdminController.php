@@ -93,7 +93,7 @@ class AdminController extends Controller
     public function updatename(Request $request){
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email', // Tambahkan validasi email di sini
+            'email' => 'required|email', 
         ]);
     
         $loggedInUser = Auth::guard('admin')->user();

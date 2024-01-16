@@ -1,15 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-<<<<<<< HEAD
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
-=======
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
@@ -23,7 +14,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 
 class ProfileController extends Controller
 {
@@ -40,20 +30,6 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-<<<<<<< HEAD
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-=======
-
     public function update(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
@@ -79,7 +55,7 @@ class ProfileController extends Controller
 
     public function uploadpotouser(Request $request){
         $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,JPG|max:2048',
         ]);
 
         if (Auth::user()->foto) {
@@ -100,7 +76,6 @@ class ProfileController extends Controller
             $fotoPath;
             return Redirect::route('profile.edit')->with('status', 'profile-updated');
          } else {
-             // Jika variabel $barangSewa tidak berhasil dibuat
              return redirect()->back()->with('status', 'Gagal menyimpan. Silakan coba lagi.');
          }
     }
@@ -124,7 +99,6 @@ class ProfileController extends Controller
     
         // Redirect atau berikan respons sesuai kebutuhan
         return redirect()->route('profile.edit')->with('status', 'Foto profil dihapus.');
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
     }
 
     /**
@@ -147,9 +121,6 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
-<<<<<<< HEAD
-=======
-
     public function userabout(){
         return view('profile.about');
     }
@@ -187,5 +158,4 @@ class ProfileController extends Controller
     public function comingsonn(){
         return view('profile.comingsonn');
     }
->>>>>>> 87741116a1b3f5aedca64f3f527cf8212022e055
 }

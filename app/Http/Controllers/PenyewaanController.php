@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Nelayan;
+use App\Models\Pengembalian;
 use App\Models\Penyewaan;
 use Illuminate\Http\Request;
 use App\Models\Tb_Barangsewa;
@@ -100,5 +101,17 @@ class PenyewaanController extends Controller
         $kodeBarangArray = $barangSewa->pluck('kode_barang')->toArray();
         $pesanan = Penyewaan::whereIn('kode_barang_id', $kodeBarangArray)->get();
         return view('nelayan.detailpesanan',compact('pesanan'));
+    }
+
+    public function viewbaranguser(){
+        $pesanan = Penyewaan::where('user_id', Auth::user()->id)->get();
+        return view('checkout.viewbaranguser', compact('pesanan'));
+    }
+
+    public function barangkembali(){
+        $sewo = Penyewaan::where('user_id', Auth::user()->id)->get();
+        $kodeBarangArray2 = $sewo->pluck('kode_sewa')->toArray();
+        $pesanan = Pengembalian::whereIn('kode_sewa_id', $kodeBarangArray2)->get();
+        return view('checkout.barangkembali', compact('pesanan'));
     }
 }

@@ -9,7 +9,8 @@ class Pengembalian extends Model
 {
     use HasFactory;
     protected $table = 'tb_pengembalians';
-
+    protected $primaryKey = 'kode_kembali';
+    protected $keyType = 'string';
     protected $fillable = [
         'kode_kembali',
         'jam_pengembalian',
