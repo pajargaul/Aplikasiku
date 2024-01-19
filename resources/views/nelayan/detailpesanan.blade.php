@@ -57,7 +57,6 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{route('nelayan.profile')}}">Profile</a></li>
                 <li><a class="dropdown-item" href="{{route('nelayan.pengaturan')}}">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
@@ -212,7 +211,7 @@
                               <br>
                               <h5>Waktu yang tersisa :</h5>
                               <p id="demo{{$item->kode_sewa}}" style="color: red"></p>
-                              <h5>Keterlamabatan :</h5>
+                              <h5>Keterlambatan :</h5>
                               <p id="telat{{$item->kode_sewa}}" style="color: red"></p>
                               <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal{{ $item->kode_sewa}}">Selengkapnya</a>
                               <a href="{{route('nelayan.barangkembali', ['kode_sewa' => $item->kode_sewa, 'jamkembali' => $item->jam_pengembalian, 'jumlah'=>$item->barangSewa->jumlah])}}" class="btn btn-warning">Telah Mengembalikan</a>

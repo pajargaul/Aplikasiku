@@ -40,3 +40,6 @@ Route::middleware('auth:sanctum')->get('/barangsewanelayan', [APIAuthController:
 Route::middleware('auth:sanctum')->get('/keranjangApi', [APIAuthController::class, 'keranjangApi']);
 Route::middleware('auth:sanctum')->get('/keranjangApi2', [APIAuthController::class, 'keranjangApi2']);
 Route::middleware('auth:sanctum')->get('/barangKembaliApi', [APIAuthController::class, 'barangKembaliApi']);
+
+Route::middleware('auth:sanctum')->get('/mulaisewaApi', [APIAuthController::class, 'storesewa']);
+Route::get('/cancel/{kode_barang}/{jumlah}/{jumlah2}/{kode_sewa}', [APIAuthController::class, 'cancel'])->name('cancel')->middleware('auth:sanctum');

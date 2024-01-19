@@ -71,7 +71,6 @@
     </div>
     <!-- Spinner End -->
 
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top p-0" style="background-color: #097ABA;">
         <a href="{{route('index')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -121,6 +120,7 @@
             </div>
         </div>
     </div>
+
     <!-- Header End -->
     <div class="container">
         <ul class="news-list">
@@ -157,8 +157,7 @@
                                     <li><a href="#">Pricing</a></li>
                                     <li><a href="#">Resources</a></li>
                                 </ul>
-                            </div>
-                          
+                            </div>                          
                             <div class="ul2">
                                 <ul class="menufooter">
                                     <li><a href="#">Jobs</a></li>
@@ -194,11 +193,8 @@
                     </div>
                 </footer>
     <!-- Footer End -->
-
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

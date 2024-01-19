@@ -16,6 +16,7 @@ class Penyewaan extends Model
         'kode_sewa',
         'jumlah_sewa',
         'jumlah_waktu',
+        'total_harga',
         'jam_sewa',
         'jam_pengembalian',
         'status_pengembalian',

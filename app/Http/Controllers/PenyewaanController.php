@@ -27,8 +27,6 @@ class PenyewaanController extends Controller
         ], [
             'kode_barang.exists' => 'Kode barang tidak valid.',
         ]);
-    
-        // Mengecek apakah jumlah barang yang tersedia cukup
         $barang = Tb_Barangsewa::where('kode_barang', $request->input('kode_barang'))->first();
         if (!$barang || $barang->jumlah < $request->input('jumlahsewa')) {
             return redirect()->back()->with('st', 'Jumlah barang tidak mencukupi untuk disewa.');
@@ -39,12 +37,14 @@ class PenyewaanController extends Controller
         $formattedNumber = str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
         $newKodeSewa = 'S' . $formattedNumber;
 
+        $total = $request->input('waktu') * $request->input('jumlahsewa') * $barang->harga;
             $barangSewa = Penyewaan::create([
             'kode_sewa' => $newKodeSewa,
             'jumlah_sewa' => $request->input('jumlahsewa'),
             'jumlah_waktu' => $request->input('waktu'),
             'user_id' => Auth::user()->id,
             'kode_barang_id' => $request->input('kode_barang'),
+            'total_harga' => $total,
         ]);
 
         DB::table('tb_barangsewas')
@@ -113,5 +113,27 @@ class PenyewaanController extends Controller
         $kodeBarangArray2 = $sewo->pluck('kode_sewa')->toArray();
         $pesanan = Pengembalian::whereIn('kode_sewa_id', $kodeBarangArray2)->get();
         return view('checkout.barangkembali', compact('pesanan'));
+    }
+
+    public function cancel($kode_barang, $jumlah, $jumlah2, $kode_sewa){
+        try {
+            $cancel = Penyewaan::where([
+                'kode_sewa'=> $kode_sewa,
+                'jam_sewa' => null,
+                'jam_pengembalian'=> null,
+                'status_pengembalian' => null,
+                ])->firstOrFail();
+
+            DB::table('tb_barangsewas')
+            ->where('kode_barang', $kode_barang)
+            ->update([
+                'jumlah' => $jumlah + $jumlah2,
+            ]);
+
+            $cancel->delete();
+            return redirect()->back()->with('st', 'Anda telah membatalkan penyewaan barang tersebut');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('st', 'Penyewaan tidak ditemukan');
+        }
     }
 }

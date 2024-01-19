@@ -49,7 +49,6 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{route('nelayan.profile')}}">Profile</a></li>
                 <li><a class="dropdown-item" href="{{route('nelayan.pengaturan')}}">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li>
                     <hr class="dropdown-divider" />
                 </li>

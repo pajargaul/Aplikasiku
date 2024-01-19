@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('kode_sewa')->primary();
             $table->integer('jumlah_sewa');
             $table->integer('jumlah_waktu');
+            $table->decimal('total_harga')->nullable();
             $table->dateTime('jam_sewa')->nullable();
             $table->dateTime('jam_pengembalian')->nullable();
             $table->string('status_pengembalian')->nullable();

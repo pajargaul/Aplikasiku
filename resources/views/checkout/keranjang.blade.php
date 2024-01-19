@@ -164,7 +164,7 @@
               <img src="{{ asset('storage/fotobarang/' . $item->barangSewa->foto_barang) }}" class="mr-3" alt="Product Image">
               <p class="card-text">Jumlah Sewa :{{ $item->jumlah_sewa }}</p>
               <a href="{{ route('hubungi.pemilik', ['id' => $item->barangSewa->nelayan_id]) }}" class="btn btn-primary" class="btn btn-primary">Hubungi Pemilik</a>
-              <a href="#" class="btn btn-warning" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#productModal{{ $item->barangSewa->kode_barang}}">Detail</a>
+              <a href="#" class="btn btn-warning" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#productModal{{ $item->kode_sewa}}">Detail</a>
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@
     <!-- Existing product card code -->
 
     <!-- Modal -->
-    <div class="modal fade" id="productModal{{ $item->barangSewa->kode_barang }}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal fade" id="productModal{{ $item->kode_sewa }}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -191,20 +191,28 @@
                 <div class="modal-body">
                     <img src="{{ asset('storage/fotobarang/' . $item->barangSewa->foto_barang) }}" class="card-img-top" alt="{{ $item->barangSewa->nama_barang }}">
                     <p style="color: black">Kode Barang : {{ $item->barangSewa->kode_barang }}</p>
+                    <p style="color: black">Kode Sewa : {{ $item->kode_sewa }}</p>
                     <p style="color: black">Nama Pemilik : {{ $item->barangSewa->nelayan->nama }}</p>
                     <p style="color: black">Nomer telepon pemilik : {{ $item->barangSewa->nelayan->nomer_telepon }}</p>
                     <p style="color: black">Jumlah Sewa : {{ $item->jumlah_sewa }} Barang</p>
                     <p style="color: black">waktu barang yang akan disewa Sewa : {{ $item->jumlah_waktu }} Jam</p>
+                    <p style="color: black">total harga : Rp. {{ number_format($item->total_harga, 0, ',', '.') }},-</p>
                     <!-- Add other product details here -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <a href="{{ route('hubungi.pemilik', ['id' => $item->barangSewa->nelayan_id]) }}" class="btn btn-primary">Hubungi Pemilik</a>
+                    <a href="{{ route('cancel', ['kode_barang' => $item->barangSewa->kode_barang, 'jumlah'=> $item->barangSewa->jumlah, 'jumlah2'=> $item->jumlah_sewa, 'kode_sewa' => $item->kode_sewa]) }}" class="btn btn-danger">cancel</a>
                 </div>
             </div>
         </div>
     </div>
 @endforeach
+@if(session('st'))
+<div class="alert alert-danger">
+    {{ session('st') }}
+</div>
+@endif
 
     <!-- Footer Start -->
     <footer class="py-4 mt-auto"

@@ -328,7 +328,14 @@ public function deleteBarangSewa($kode_barang)
     try {
         $sewa = Penyewaan::where('kode_barang_id', $kode_barang)->first();
         if (!$sewa) {
+            $barangSewa = Tb_Barangsewa::where('kode_barang', $kode_barang)->first();
+        if (!$barangSewa) {
             return redirect()->back()->with(['error' => 'Data barang dengan kode_barang ' . $kode_barang . ' tidak ditemukan.']);
+        }
+        $barangSewa->delete();
+        Storage::delete('public/fotobarang/' . $barangSewa->foto_barang);
+
+        return redirect()->back()->with(['st' => 'Data barang dengan kode_barang ' . $kode_barang . ' berhasil dihapus.']);
         }
         $kode_sewa = $sewa->kode_sewa;
         $pengembalian = Pengembalian::where('kode_sewa_id', $kode_sewa)->first();
@@ -343,9 +350,9 @@ public function deleteBarangSewa($kode_barang)
         $barangSewa->delete();
         Storage::delete('public/fotobarang/' . $barangSewa->foto_barang);
 
-        return redirect()->back()->with(['success' => 'Data barang dengan kode_barang ' . $kode_barang . ' berhasil dihapus.']);
+        return redirect()->back()->with(['st' => 'Data barang dengan kode_barang ' . $kode_barang . ' berhasil dihapus.']);
     } catch (\Exception $e) {
-        return redirect()->back()->with(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+        return redirect()->back()->with(['st' => 'Terjadi kesalahan: ' . $e->getMessage()]);
     }
 }
 }

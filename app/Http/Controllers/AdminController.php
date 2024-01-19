@@ -99,7 +99,6 @@ class AdminController extends Controller
         $loggedInUser = Auth::guard('admin')->user();
     
         if ($request->input('email') === $loggedInUser->email) {
-            // Email yang diberikan cocok dengan email pengguna yang diotentikasi
     
             DB::table('admins')
                 ->where('email', $loggedInUser->email)

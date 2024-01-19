@@ -57,7 +57,6 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{route('nelayan.profile')}}">Profile</a></li>
                 <li><a class="dropdown-item" href="{{route('nelayan.pengaturan')}}">Settings</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
@@ -201,6 +200,7 @@
                                             <li class="list-group-item">Nama Penyewa : {{ $item->user->name}}</li>
                                             <li class="list-group-item">Jumlah yang akan disewa : {{ $item->jumlah_sewa}}</li>
                                             <li class="list-group-item">Waktu : {{ $item->jumlah_waktu}} Jam</li>
+                                            <li class="list-group-item">total harga : Rp. {{ number_format($item->total_harga, 0, ',', '.') }},-</li>
                                         </ul>
                                         <div class="card-body">
                                             <a href="{{ route('penyewaan.mulaisewa', ['kode_sewa' => $item->kode_sewa]) }}" class="btn btn-danger">Sewakan Sekarang</a>

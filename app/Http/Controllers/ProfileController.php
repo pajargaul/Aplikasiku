@@ -82,22 +82,13 @@ class ProfileController extends Controller
 
     public function deletepotouser(Request $request)
     {
-        // Ambil ID user dari request atau sesuaikan dengan kebutuhan
         $userId = $request->user()->id;
-    
-        // Ambil user dari database
         $user = User::findOrFail($userId);
-    
-        // Hapus foto dari storage jika ada
         if ($user->foto) {
             Storage::delete('public/fotouser/' . $user->foto);
         }
-    
-        // Hapus foto dari database
         $user->foto = null;
         $user->save();
-    
-        // Redirect atau berikan respons sesuai kebutuhan
         return redirect()->route('profile.edit')->with('status', 'Foto profil dihapus.');
     }
 

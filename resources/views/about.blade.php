@@ -130,7 +130,7 @@
                     <a href="{{route('comingsonn')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
-                          <img src="{{asset('img/iwak_wader-removebg-preview 1.png')}}" alt="" style="width: 99%">
+                          <img src="{{asset('img/toko.png')}}" alt="" style="width: 99%">
                             <h5 class="mb-3">Pasar Ikan</h5>
                         </div>
                     </div>
@@ -140,8 +140,8 @@
                     <a href="{{route('comingsonn')}}">
                     <div class="service-item text-center pt-3" style="border-radius:20px">
                         <div class="p-4">
-                          <img src="{{asset('img/🦆 icon _history_.png')}}" alt="" style="width: 99%">
-                            <h5 class="mb-3">History</h5>
+                          <img src="{{asset('img/ikan2.png')}}" alt="" style="width: 99%">
+                            <h5 class="mb-3">Suplay ikan</h5>
                         </div>
                     </div>
                     </a>
